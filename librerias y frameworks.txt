@@ -1,0 +1,17 @@
+javascript:
+Librerias:
+Chart.js: generar graficos
+React: 
+
+Frameworks:
+React Router
+Next.js
+Angular:grado empresarial
+vuejs:
+svelte: 
+
+Compiladores y empaquetadores:
+TypeScript:
+Babel:
+Webpack:
+Turbo:
