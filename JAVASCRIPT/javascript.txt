@@ -1,0 +1,391 @@
+IMPORTAR LIBRERIAS:
+<script src="/js/libreriamatematicas.js"></script>
+
+==========================================================================================================================
+VARIABLES
+sintaxis:
+let nombre="hola Mundo";
+REGLAS PARA NOMBRAR VARIABLES
+UpperCamelCase: la primera letra de cada palabra debe ser con mayuscula
+camelCase :primera letra de cada palabra despues de la primera debe ser con mayuscula
+snake_case: las palabras deben ser separadas con guion bajo
+=========================================================================================================================
+TIPOS DE DATOS
+Primitivos: 					de Referencia
+-Number						-Array		
+-String						-Object
+-Boolean						-Function
+-Undefined					-Clases
+-Null
+LOS TIPOS DE DATOS PRIMITIVOS SE COPIAN Y LOS DE REFERENCIA SE REFERENCIAN
+=========================================================================================================================
+CONSTANTES
+que la variables es constante y no podemos cambiarles pero si la declaramos con LET si se puede
+const nombre="Hola mundo";   const= Nos mandara un error si intentamos cambiar la variable
+nombre="maxi";
+console.log(nombre);
+=========================================================================================================================
+TIPADO DINAMICO
+
+typeof: nos muestra que tipo de dato es nombre
+sintaxis:
+nombre="hola";
+console.log(typeof nombre)
+=========================================================================================================================
+DECLARACIONES Y EXPRESIONES
+si te permite hacer un console.log es una expression, si no es una declaracion o statements
+Declaration:
+-let
+-const
+-function
+-async function
+-class
+-export/import
+
+Statements:
+-if
+-for
+-else
+-switch
+
+Expression:
+cada vez que el codigo hace algo y obtienes un valor de este: es una expression
+4+6=10
+x=4
+mifuncion(): 
+=========================================================================================================================
+OPERADORES
+-Aritmeticos
+-Asignacion
+-Comparacion
+===: evaluia si son el mismo tipo de dato
+-Logicos
+AND:&&
+OR ||
+NOT !
+-Bitwise
+-Ternario
+? si es true:si es falso
+-----------------------------------------------------------------------------------------------------------------------------------------
+LOOPS:
+-while
+-do while
+-for 
+-for in
+-for of
+
+=========================================================================================================================
+OBJETOS
+Object.freeze(): Indicamos que un objeto no puede ser cambiado sus propiedad y valores , tampoco agregar
+Object.seal(): Indicamos que un objeto no puede agregar mas propeidas pero si cambiarlas si ya las tiene
+Object.keys():podemos ver las propiedas de un objeto
+Object.entries():podemos ver los valores del objeto
+assign: para clonar objetos
+=========================================================================================================================
+
+ CONSTRUCTORES
+/**
+ * new Array
+ * new String
+ * new Number
+ * new Boolean
+    new Object
+ */
+=========================================================================================================================
+MATH:
+ Math.PI,
+  Math.abs(15),
+Math.round(13.3),
+    Math.floor(15.9),
+    Math.ceil(15.1),
+    Math.pow(2,3),
+    Math.sqrt(9),
+Math.random
+=========================================================================================================================
+DATE
+//hora actual de tu pc
+const ahora=new Date();
+
+
+//mes,dia,año
+const fecha=new Date('September 11 2002 ');
+
+
+//año,mes,dia,hora,minutos
+const fecha2=new Date(2024,11,25,18,19)
+
+
+
+.toDateString())
+toISOString()) //no favorable
+
+toTimeString())
+.getMonth())
+=========================================================================================================================
+STRINGS:
+
+saludo.length
+saludo.indexOf ("ho")
+saludo.includes("ma")
+saludo.replace("maxi","maxito")
+saludo.toLowerCase()
+saludo.toUpperCase()
+saludo.substring(0,4)
+saludo.substr(2,4)
+
+const espacios="  hola   maxito   "
+
+espacios.trim()
+espacios.trimStart()
+espacios.trimEnd()
+========================================================================================================================
+TEMPLATES
+const saludo="hola \\maxi\n bienvenido\" a\t tu casa\" "
+
+const nombre="maxssi"
+const plantilla=`hola ${nombre}}
+bienvenido a maxi
+cariños maxito`
+
+console.log(plantilla)
+========================================================================================================================
+ARRAYS:
+
+push('c'): agregar al final
+
+unshift('y','z'): agregar al comienzo
+
+
+splice(3,0,'v'):agregar elementos entre start y end //colocamos ' pára indicar q no queremos elimnjar nada
+
+letras.shift()://eliminar el primer elemento
+arr.pop(): ELIMINAR EL ULTIMO ELEMENTO
+.splice(1,2,)://entremedio
+
+Buscar primitivos:
+
+letras.indexOf('c')
+
+letras.indexOf(1)
+
+(letras.lastIndexOf(1)
+
+.concat: para unir arrays
+
+.join: unir arrays segun un caracter
+
+.sort: de menor a mayor
+
+.reverse :de mayor a menor
+
+...array: se crea la copía de un array
+
+.every:  busca en el array hasta encontrar el falso
+
+.some: busca en el array hasta encontrar alguno verdadero
+
+.filter()=>{}: filtra informacion de un array
+
+.map()=>{}: crea un nuevo array en base a lafuncion que le indiquiemos
+
+.reduce((acc,el)=>{},0): reduce la informacion en acumulador y elemento
+
+.split:convierte el texto en un array
+======================================================================================================================
+FUNCIONES:
+
+Cuando declaramos una funcion con 'Function' lo que sucede es que javascript y lo coloca al comienzo del archivo.
+Pasa lo mismo con declarar variables pero aun asi no te dejara inicializarla
+
+arguments: Podemos saber los arguementos
+
+...rest: indica a la computadora que añada los valores faltantes
+-------------------------------------------------------------------------------------------------------
+GETTERS AND SETTERS
+get:
+get nombrefunction({})
+set:
+set nombrefunction(valor){}
+-------------------------------------------------------------------------------------------------------
+try-catch: lo de siempre
+
+throw new Error('no es un array'): con esto podemos indicar el error
+
+THIS:
+//dentro de un objeto: this hace referencia a un objeto{}
+//dentro de una funcion: this hace refencia al objeto window[],global
+// si se usa new hace referencia al objeto que sera creado
+cuando utilizamos new:
+--Se crea un objeto literal
+--se vinculta este objeto a this
+--se vincula al prototipo
+--si no retorna nada, entonces retorna this
+
+
+.forEach: Funciona exactamente igual  que map pero no retorna nada o como un FOR
+.call() permite que una función/método que pertenece a un objeto, ser asignada y llamada para un objeto diferente o para extender objetos
+.apply: lo mismo con call pero devuelve un array
+CAMBIAR CONTEXTO DE THIS
+.BIND(this)
+======================================================================================================================
+PROTOTIPOS
+Los prototipos son un conjunto de normas para integrar Programación Orientada a Objetos en JavaScript. 
+.prototype: para acceder al prototipo, podemos ver sus funciones dentro de chrome
+-------------------------------------------------------------------------------------------
+Aplicando HERENCIA EN PROTOTIPOS:
+Object.setPrototypeOf(User.prototype,Entidad.prototype):el prototipo de entidad hacia user.
+Object.getPrototypeOf():Obtener el prototipo 
+======================================================================================================================
+CLASES CON ES6
+sintaxis: class nombre{
+	constructor(){}
+}:
+-------------------------------
+Propiedas y metodos privados:
+#name;
+---------------------------------
+metodos estaticos:
+Static nombre
+----------------------------------
+Getters and Setters:
+get nombre(){}
+set nombre(value){}
+------------------------------------
+class user EXTENDS entidad: extends para heredar todo sobre entidad.
+constructor super() para llamar al constructor de entidad
+======================================================================================================================
+MANIPULACION DEL DOM (Document Object Model)
+tip en consola:
+console.log(Object.getPrototypeOf(variable)) :podemos acceder a las propiedades del elemento html.
+
+Acceder a un elemento html:
+//HTMLELEMENT
+document.getelementbyid: acceder por el id del elemento.
+
+//HTML COLLECTION
+document.getElementsByClassName: acceder por clase
+
+//NODELIST:
+document.getElementsByName= acceder por nombre o name
+
+//HTMLELEMENT <-- un solo elemento
+document.queryselector: acceder a un solo elemento por id class o name																						
+//NODELIST:
+document.queryselectorAll: acceder a varios elementos por id class o name o etiqueta.
+
+HTMLCOLLECTION VS NODELIST:
+htmlcollection  siempre reflejara los ultimos cambios del DOM y node list no siempre reflejara con los cambios del DOM.
+======================================================================================================================								
+COLLECTION:
+collection.nameditem: accedemos por el nombre del item
+collection.item('indice'): accedemos por el indice del item (empieza de 0)	
+collection[indice]: accedemos como un array, pero no es un array es un objeto
+
+ITERAR ELEMENTOS de una collection:
+for(let el of collection)
+	console.log(el)
+
+NODELIST:
+list.item(posicion): acceder por el nombre del item y posicion
+list.[]= lo mismo pero abreviado
+
+list.foreach(x=> console.log(x));=iterar todos los elementos de la lista
+list.entries();
+list.keys();
+list.values():
+======================================================================================================================
+ELEMENTOS HTML
+let el =document.createElement('p'): crear un elemento html
+el.innerHTML='le damos un valor al parrafo';
+document.body.append(el): lo agregamos al body 
+
+el.style: cambiar color css
+el.className= asignar clase
+el.id= asignar id
+el.setatributte= agregar un identificador unico
+el.getAttribute= obtener propiedad
+el.hasAttribute= preguntamos si tiene ya una propieadad.
+======================================================================================================================
+EVENTOS  EN JAVASCRIPT:
+Evento o e: Descripción
+onmouseenter:Al pasar el mouse
+onmouseleave: cuando sale el mouse
+onfocus:al clickear
+onblur: al clickear algo diferente (se usa dps del onfocus )
+onchange :La acción de activa cuando el elemento html cambia
+onclick: El usuario hizo clic en un elemento
+onmouseover :El usuario pasó el mouse sobre un elemento
+onmouseout :El usuario sacó el punter del mouse de encima de un elemento
+onkeydown: El usuario presionó una tecla en el control
+onload :El navegador 
+
+e.preventDefault: previene la actualizacion de pagina
+addEventListener('',e)
+
+======================================================================================================================
+DRAGGABLE: en html indicamos al elemento que es draggable=true
+ondragenter: entrando el drag
+ondragleave:saliendo el drag
+ondrop:
+ondragover:
+
+======================================================================================================================
+ASINCRONIA:
+---------------------
+PROMESAS: REPRESENTAN EL ESTADO DE UNA PETICION
+pending=promesa pendiente
+rejected=promesa rechaza
+fullfilled=promesa terminada
+
+-consultas a bases de datos
+-peticiciones a servidores
+-webworkers
+
+let promesa=new Promise((resolve,reject)=>{})
+promesa.then(bien=>,mal=>): recibe 2 funciones, una en caso de resolve y otra en caso de reject.
+Tambien al usar el metodo .then este tambien nos resuelve una promesa.
+
+promesa.catch(e=>console.log(e)): para capturar cuando una promesa es rechazada
+promesa.finally(()=>console.log()): Finally se ejecutara siempre, y no recibe argumento.
+------------------------------------------------------------------------------------
+METODOS ESTATICOS
+promise.reject():resuelve
+promise.resolve():rechaza
+
+Promise.all([]): Resuelve las promesa indicadas pero en paralelo,si una sale mal las demas tambien.
+Promise.race([]):devuelve la primera que resuelve o la primera que rechaze
+Promise.any([]): Devuelve la primera que resuelve sin importar si antes se rechazo una.
+Promise.allSettled([]): Se envuelven los resultados enh un objeto e indican si estan rechazadas o resueltas.
+------------------------------------------------------------------------------------
+PASARLE ARGUMENTOS A LAS PROMESAS
+let promesa1= user =>new Promise((res,rej)=>{
+    res(user);
+});
+------------------------------------------------------------------------------------
+ASYNC Y AWAIT
+
+ASYNC function main(){}: el wait se usa en una funcion que contenga el Async
+
+AWAIT promise: El valor del resultado de una promesa, pero no como una promesa.
+------------------------------------------------------------------------------------
+FETCH(): dos argumentos, url y opciones(GET,POST,PUT,DELETE)
+sintaxis:
+fetch(url,{
+   method:'GET'
+   body: JSON.stringify({title:'hola mundo'}),    :para convertirlo a string
+    headers:{
+        'Content-Type':'Application/json',  //para que te tomen los datos
+        Authorization:'api key'
+    }
+})
+
+.json():nos devuelve la url en formato json
+.text: nos devuelve la url en formato texto
+.ok: devolvera falso si el codigo no se encuentra entre 200 y 299
+.status:
+------------------------------------------------------------------------------------
+ABORTAR FETCH
+let controller= new AbortController();
+let signal=controller;
+fetch(url,signal)
+controller.abort()

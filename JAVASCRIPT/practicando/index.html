@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        $(document).ready(function(){
+            $("input").click(function(){
+                $("div").find("span").each(function(indice){
+                    $(this).text("span numero: "+indice)
+                })
+            });
+            });
+    </script>
+    
+    <input type="button" value="clickear">
+    <div>
+        <span>span</span><br>
+        <label >label</label><br>
+        <span>span</span><br>
+    </div>
+</body>
+</html>

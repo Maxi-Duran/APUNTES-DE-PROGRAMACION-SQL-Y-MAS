@@ -1,0 +1,91 @@
+println= para imprimir separado cada system.out
+
+string palabra: "le indicamos que palabra es un string"
+
+el metodo sqrt de la clase math para calcular la raiz cuadrada de a=  math.sqrt(a)
+
+
+En java las instrucciones se ejecutan en orden, de la primera línea hasta el final. Existen sentencias que cambian la ejecución del flujo para tomar decisiones o repetir sentencias.
+
+Sentencias de decisión
+• if-else
+• switch
+
+Sentencias de repetición
+• while
+• do-while
+• for
+
+
+
+IF VERSUS SWITCH
+
+El uso de la instrucción switch siemprepodrá ser sustituida por el uso de if. Noobstante, a veces nos resultará útil alintroducir mayor claridad en el código
+El if es mejor usarlo en decisiones SI yNO. Cuando se presentan múltiplesopciones que puedes controlar, serecomienda SWITCH
+El switch evalúa solamente valoresmientras que el if evalúa condiciones
+El switch a diferencia de if es como unmenú, no se evalúa condiciones
+
+
+el set sirve para modificar los datos de los objetos
+
+el this es para llamar al atributo
+el scanner es un input
+system.in detecta datos de entrada
+el default es como la opcion si no se ingresa las opcione establecidas
+ ==============================================================
+AUMENTAR DIA TIPO DATE:
+ Date fecha= new Date();
+        SimpleDateFormat f1=new SimpleDateFormat("dd/mm/yyyy");
+        
+       String fecha2="22/10/2023";
+       fecha=f1.parse(fecha2);
+       
+        System.out.println(f1.format(fecha));
+        
+        Calendar calendar= Calendar.getInstance();
+        calendar.setTime(fecha);
+        calendar.add(calendar.DAY_OF_YEAR, 5);
+        
+        fecha=calendar.getTime();
+        System.out.println(fecha);
+ ==============================================================
+
+Jlabel
+prefijo:lbl
+
+JTextField
+Prefijo: txt
+
+JTextArea
+Prefijo: txa
+
+JButton
+Prefijo: btn
+
+JCheckBox
+Prefijo: chk
+
+JRadioButton
+Prefijo: opt
+
+JComboBox
+Prefijo: cbo
+
+==============================================================
+BASE DE DATOS CON JAVA
+DriverManager: permite establecer y gestionar conexiones a la BD conel driver apropiado.
+
+Connection: proporcionar un vínculo entre las bases de datos y unaaplicación en Java.
+
+Statement: permite enviar instrucciones a la BD.
+
+PreparedStatement: permite usar instrucciones preparadas.
+
+ResultSet: conjunto de resultados que se devuelven de una query.
+
+executeQuery(String sql): permite la ejecución de consultas. SELECT  Devuelve un objeto ResultSet• 
+
+executeUpdate(String sql): permite realizar modificaciones en la BD.INSERT, UPDATE, DELETE Devuelve el número de columnas afectadas
+
+
+

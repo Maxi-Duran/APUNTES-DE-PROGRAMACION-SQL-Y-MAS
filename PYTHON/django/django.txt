@@ -1,0 +1,76 @@
+COMANDOS:
+CREAR MIGRACIONES:
+python manage.py makemigrations
+python manage.py migrate
+-------------------------------------------------------------------------------------------------
+CREAR SUPERUSUARIO:
+paso1: python manage.py createsuperuser
+Paso 2:   Username: admin
+Paso 3:   Email address: admin@example.com
+Paso 4:   Agregar contraseña
+-------------------------------------------------------------------------------------------------
+CORRER SERVIDOR:
+python manage.py runserver
+-------------------------------------------------------------------------------------------------
+
+=====================================================================================
+Creacion de archivos de django.
+
+__init__.py: archivo especial de Python que indica que el contenido de esta subcarpeta será un
+módulo.
+
+admin.py: archivo de Django para registrar modelos y poder emplearlos en una aplicación para la
+gestión de datos.
+
+apps.py: archivo de configuración de la aplicación.
+
+migrations: carpeta para gestión de las migraciones.
+
+models.py: archivo para crear los modelos de la aplicación.
+
+tests.py: archivo para realizar pruebas de la aplicación.
+
+views.py: archivo para crear las funciones y vistas para la lógica de la aplicación. Será la capa de la lógica de negocio que se encarga de conectar la capa del modelo con la de la
+plantilla.
+======================================================================================
+ORM
+ARGUMENTOS COMUNES DE LOS CAMPOS:
+help_text: Proporciona una etiqueta de texto para formularios HTML 
+
+verbose_name: Nombre de fácil lectura que se usa en etiquetas para el campo. 
+default: Valor por defecto para el campo. 
+
+null: Si es True, Django guardará valores en blanco o vacíos como NULL en la base de datos para campos donde sea apropiado  
+
+blank: Si es True, se permite que el campo quede en blanco en tus formularios. El valor por defecto es False, lo que significa que la validación de formularios de Django te forzará a introducir un valor.
+
+choices: Un grupo de valores de selección para este campo. Si se proporciona, el widget correspondiente por defecto del formulario será una caja de selección con estos valores de selección en vez del campo de texto estándar.
+
+primary_key: Si es True, establece el campo actual como clave primaria para el modelo  Si no se especifica ningún campo como clave primaria, Django añadirá automáticamente un campo para este propósito.
+-------------------------------------------------------------------------------------------
+TIPOS DE DATOS:
+CharField: se usa para definir cadenas de longitud corta a media. Debes especificar la max_length (longitud máxima) de los datos que se guardarán.
+
+TextField :se usa para cadenas de longitud grande o arbitraria. Puedes especificar una max_length para el campo, pero sólo se usa cuando el campo se muestra en formularios 
+
+IntegerField :es un campo para almacenar valores de números enteros y para validar los valores introducidos como enteros en los formularios.
+
+DateField y DateTimeField :se usan para guardar/representar fechas e información fecha/hora ,auto_now=True (para establecer el campo a la fecha actual cada vez que se guarda el modelo), auto_now_add (para establecer sólo la fecha cuando se crea el modelo por primera vez), y default (para establecer una fecha por defecto que puede ser sobreescrita por el usuario).
+
+EmailField :se usa para validar direcciones de correo electrónico.
+
+FileField e ImageField :se usan para subir ficheros e imágenes respectivamente (el ImageField añade simplemente una validación adicional de que el fichero subido es una imagen). Éstos tienen parámetros para definir cómo y donde se guardan los ficheros subidos.
+
+AutoField :es un tipo especial de IntegerField que se incrementa automáticamente.
+
+ManyToManyField :se usa para especificar una relación muchos a muchos 
+====================================================================================
+Agregar una tabla al administrador en admin.py
+from django.contrib import admin
+from .models import Genero, Alumno
+
+# Register your models here.
+admin.site.register(Genero)
+admin.site.register(Alumno)
+==================================================================================
+CONSULTAR DATOS EN DJANGO

@@ -1,0 +1,35 @@
+SINTAXIS:
+$(document).ready(function(){
+
+
+})
+=================================================================================
+FUNCIONES ,METODOS O EVENTOS:
+.hide():seleccion y oculta elementos
+.val():seleccion y obtiene el valor a traves del id
+.show():selecciona y muestra todos los objetos
+load(), el cual permite cargar el contenido obtenido desde una fuenteremota a un control en particular que exista en el DOM del documento.
+• get(), el cual permite solicitar datos desde una fuente remota y mostrarloen un elemento del documento.
+• post(), el cual permite enviar datos para ser procesados en un recursoremoto.
+• Ajax(), el cual permite realizar peticiones Ajax al servidor, la diferenciaes que este método se puede utilizar para peticiones get o post.
+blur(), enlaza una acción a un objeto cuando este cambia el foco.
+change(), enlaza una acción a un objeto cuando este cambia sucontenido.
+ focus(), enlaza una acción a un objeto cuando este recibe el foco.
+ focusin(), enlaza una acción a un objeto cuando este o su elementopadre reciben el foco.
+ focusout(), enlaza una acción a un objeto cuando este o su elementopadre pierden el foco.
+ select(), enlaza una acción a un objeto cuando el texto que estecontiene es seleccionado
+submit(), enlaza una acción a un objeto form cuando el usuario intentaenviar un formulario.
+=================================================================================
+CADENAS:
+LENGTH:
+TOUPPERCASE
+TOLOWERCASE
+
+
+
+
+
+
+
+
+

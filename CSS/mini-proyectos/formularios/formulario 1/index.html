@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario</title>
+</head>
+<body>
+    
+    <form >
+        <h2>Formulario de contacto</h2>
+        <div class="form-input"><h5>Email</h5>
+            <input type="email" placeholder="email">
+        </div>
+        <div class="form-input">
+            <h5>Contraseña</h5>
+            <input type="password" placeholder="password">
+        </div>
+        <!--datalist-->
+        <div class="form-input">
+            <input list="referente">
+            <datalist id="referente">
+                <option value="a">maxi</option>
+                <option value="aa">maxi2</option>
+                <option value="aaa">maxi3</option>
+            </datalist>
+        </div>
+        <div class="form-input">
+            <label >Mensaje
+                <textarea placeholder="Deja de tu mensaje" rows="8" ></textarea>
+            </label>
+        </div>
+        <div class="form-input">
+            <label >Acepto los <a href="">terminos y condiciones</a>
+                <input type="checkbox" class="checkbox">
+            </label>
+        </div>
+
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,143 @@
+Etiquetas:
+h1 ... h6 =Define un encabezado para la seccion, los encabezados varian segun orden de importancia, son 6 posibles.
+
+p=defune un parrafo de texto
+
+br= salto de linea
+
+b=negritas
+
+u=subrayado
+
+i=cursiva
+
+hr=define una linea horizontal
+
+code= podemos escribir codigo 
+img=incorporar imagenes.
+dentro de img podemos definir su anchura y altura.
+width
+height
+alt: define el texto alternativo que describe la imagen
+
+strong =palabra en mayuscula
+LISTAS NO ORDENADAS:
+ul= permite mostrar elementos antecedidos por un punto
+<ul>
+   <li><li>
+<ul>
+
+LISTAS ORDENADAS:
+ol= permite mostrar elementos antecediso por un numero
+<ol>
+   <li><li>
+<ol>
+
+TABLAS:
+Empieza con <table>, para las filas se usa <tr>, para las celdas de encabezado <th> y  para las celdas de datos <td>
+
+thead:indicamos a html que es el encabezado de las tablas
+tbody:indicamos a html que es el body de las tablas
+tfoot:indicamos a html que es el footerde las tablas
+
+
+FORMULARIOS:
+Empieza con <Form>
+input type  : para pedir datos
+type: text,email,password,checkbox,radio,file,submit.
+
+TEXTAREA: un input mas grande
+label: si clickeamos en el parrafo nos marca donde deberiamos escribir.
+
+Barra desplegable:
+<select>
+	<option> opcion1 </option>
+	<option> opcion2 </option>
+</select>
+
+DATALIST:
+<input list="nombre">
+<datalist id ="nombre">
+	<option> opcion1 </option>
+	<option> opcion2 </option>
+
+FIELDSET y legend:
+ <fieldset>
+            <legend>IMPORTANTE</legend>
+            <input type="text" placeholder="nombre">
+            <input type="password" placeholder="contraseña">
+            <input type="email" placeholder="email">
+        </fieldset>
+        <FIELdset>
+            <legend>SECUNDARIO</legend>
+         <input type="number" placeholder="numero">
+        </FIELdset>
+con esto podemos encasillar lo mas importante
+
+Details y summary:
+<details>
+        <summary>cosas</summary>
+        
+</details>
+
+ENLACES:
+a= Crea un enlace a otras paginas webs
+href:"mail:"
+href:"tel:"
+DOWNLOAD:para poder descargar
+REEL:"noopener" :
+REEL:"noreferrer" : no sabe de donde vino
+REEL:"nofollow" :
+TARGET:"_blank" que abra la pagina en pestaña diferente
+
+AUDIO Y VIDEO:
+
+<video controls autoplay muted src="video">  </video>
+<audio controls autoplay muted src="video"></audio>	
+
+<track src="captions.vtt">=subtitulos
+srclang="es" =idioma
+
+LAZY LOADING (CARGA DIFERIDA):
+img=loading="lazy"
+
+
+HTML OBSOLETO:
+MDN HTML
+
+HTML SEMANTICO:
+<header>= definimos el header de un body
+<nav>=un espacio de navegacion
+<section>= definir una seccion
+<main>=definimos el main
+<aside>=seccion secundaria
+
+-----------------------------------------------------------------------------------------------
+RESPONSIVE DESIGN
+<picture>
+	<source media="max-width:400px)" :si alcanza esa resolucion se mostrara img1
+	srcset:"img1"
+	<source media="max-width:600px)" :si alcanza esa resolucion se mostrara img2
+	srcset:"img2"
+	img src=img 
+</picture>
+-----------------------------------------------------------------------------------------------
+FORMULARIOS WEB
+<form action= method= enctype= name= > </form>
+
+action= URL hacia donde iran los datos 
+
+method= Metodo de envio
+EJ:
+GET: consultar o recuperar datos desde el servidor
+POST: se utiliza principalmente para guardar/modificar datos en el servidor
+
+enctype= tipo de codificacion de los datos
+EJ:
+application/x-www-form-urlencoded: Es el valor por defecto, todos loscaracteres se codifican antes de ser enviados. Sólo se puede enviartexto.
+• multipart/form-data: Los caracteres no se codifican, es obligatorio paraenviar archivos hacia el servidor.
+• text/plain: Ningún carácter se codifica, sólo se puede enviar texto
+
+name= Nombre del formulario
+
+

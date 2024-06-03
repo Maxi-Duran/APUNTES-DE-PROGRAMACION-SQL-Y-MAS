@@ -1,0 +1,107 @@
+
+--caso1
+select to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+INITCAP(pnombre||' '||snombre||' '||appaterno||' '||apmaterno) as"NOMBRE CLIENTE",
+to_char(fecha_nacimiento,'dd "de" month'),
+direccion||'/'||nombre_region
+
+from cliente c JOIN region r
+using (cod_region)
+
+where to_char(fecha_nacimiento,'mm')=9 and cod_region=13
+order by 3 asc,appaterno asc;
+
+
+--caso 2
+select to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+pnombre||' '||snombre||' '||appaterno||' '||apmaterno as"NOMBRE CLIENTE",
+to_char(sum(monto_transaccion),'999G999G999') as"MONTO COMPRAS/AVANCES/S.AVANCES",
+sum(monto_transaccion)/10000*250 as"puntos"
+
+
+from cliente c join tarjeta_cliente tc
+
+using (numrun)
+join transaccion_tarjeta_cliente ttc
+using (nro_tarjeta)
+ where to_char(fecha_transaccion,'yyyy')= to_char(sysdate,'yyyy')-1
+group by numrun,dvrun,pnombre,snombre,appaterno,apmaterno
+order by 4 asc,appaterno asc;
+
+
+--caso 3
+
+--caso 4
+
+select to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+pnombre||' '||snombre||' '||appaterno||' '||apmaterno as"NOMBRE CLIENTE",
+to_char(NVL(SUM(monto_total_transaccion),0),'$99G999G999') "COMPRAS/AVANCES/S.AVANCES",
+
+case 
+when nvl(sum(monto_transaccion),0) between 0 and 100001 then 'SIN CATEGORIZACION'
+when nvl(sum(monto_transaccion),0) between 100000 and 1000000 then 'BRONCE'
+when nvl(sum(monto_transaccion),0) between 1000001 and 4000000 then 'PLATA'
+when nvl(sum(monto_transaccion),0) between 4000001 and 8000000 then 'SILVER'
+when nvl(sum(monto_transaccion),0) between 8000001 and 15000000 then 'GOLD'
+when nvl(sum(monto_transaccion),0) >1500000 then 'PLATINUM'
+end
+from cliente c join tarjeta_cliente tc
+using (numrun)
+
+left join transaccion_tarjeta_cliente ttc
+using(nro_tarjeta)
+group by numrun,dvrun,pnombre,snombre,appaterno,apmaterno
+ORDER BY appaterno ,3 desc;
+
+--caso 5
+select to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+INITCAP(pnombre||' '||substr(snombre,1,1)||'. '||appaterno||' '||apmaterno) as"NOMBRE CLIENTE",
+count(monto_total_transaccion),
+to_char(sum(monto_total_transaccion),'999G999G999')
+from cliente c join tarjeta_cliente tc
+using (numrun)
+
+join transaccion_tarjeta_cliente ttc
+using(nro_tarjeta)
+WHERE cod_tptran_tarjeta = 103 
+group by numrun,dvrun,pnombre,snombre,appaterno,apmaterno
+
+order by appaterno;
+
+
+--caso 6
+select to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+INITCAP(pnombre||' '||substr(snombre,1,1)||'. '||appaterno||' '||apmaterno) as"NOMBRE CLIENTE",
+direccion,
+nombre_provincia,
+nombre_region,
+
+
+count(case when cod_tptran_tarjeta=101 then 1 end) as"compras vigentes",
+to_char(NVL(SUM(CASE WHEN cod_tptran_tarjeta = 101 THEN monto_total_transaccion END),0),'$99G999G999') "MONTO TOTAL COMPRAS",
+
+count(case when cod_tptran_tarjeta=102 then 1 end) as"avances vigentes",
+to_char(NVL(SUM(CASE WHEN cod_tptran_tarjeta = 102 THEN monto_total_transaccion END),0),'$99G999G999') "MONTO TOTAL avances",
+
+count(case when cod_tptran_tarjeta=103 then 1 end) as"super avances vigentes",
+to_char(NVL(SUM(CASE WHEN cod_tptran_tarjeta = 103 THEN monto_total_transaccion END),0),'$99G999G999') "MONTO TOTAL super avances"
+
+
+from cliente c join region r
+using (cod_region)
+
+join provincia p
+using(cod_region,cod_provincia)
+
+join tarjeta_cliente
+using(numrun)
+
+full join transaccion_Tarjeta_cliente
+using(nro_tarjeta)
+
+group by numrun,dvrun,pnombre,snombre,appaterno,apmaterno,direccion,nombre_provincia,nombre_region,monto_total_transaccion
+
+
+ORDER BY nombre_region, appaterno
+
+;

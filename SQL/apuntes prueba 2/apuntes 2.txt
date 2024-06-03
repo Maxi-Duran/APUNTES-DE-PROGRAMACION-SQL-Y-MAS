@@ -1,0 +1,57 @@
+
+
+
+--caso 2
+select to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+INITCAP(pnombre||' '||snombre||' '||appaterno||' '||apmaterno) as"NOMBRE CLIENTE",
+to_char(monto_solicitado,'999G999G999') as"MONTO SOLICITADO CREDITOS",
+to_char(round(monto_solicitado/100000)*1200,'999G999G999') as"MONTO TOTAL SUMA"
+from cliente c natural join credito_cliente cc
+where to_char(fecha_otorga_cred,'yyyy')=2022
+order by 4 asc,appaterno asc;
+
+
+--CASO3
+
+select to_char(fecha_otorga_cred,'mm""yyyy') as"mes transaccion",
+nombre_credito as"tipo credito",
+monto_credito as"monto solicitado credito",
+CASE when monto_credito>100000 and monto_credito<=1000000 then monto_credito/100*1
+when monto_credito>1000001 and monto_credito<=2000000 then monto_credito/100*2
+when monto_credito>2000001 and monto_credito<=4000000 then monto_credito/100*3
+when monto_credito>4000001 and monto_credito<=6000000 then monto_credito/100*1
+when monto_credito>6000000 then monto_credito/100*7
+end as"aporte sibf"
+from credito_cliente cc natural join credito cr
+where to_char(fecha_otorga_cred,'yyyy')=2022
+ORDER BY 1 asc,2 asc;
+
+
+
+--CASO 4
+select to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+pnombre||' '||snombre||' '||appaterno||' '||apmaterno as"NOMBRE CLIENTE",
+to_char(monto_total_ahorrado,'999G999G999') as"MONTO TOTAL AHORRADO",
+case when monto_total_ahorrado >100000 and monto_total_ahorrado<=1000000 then 'BRONCE'
+ when monto_total_ahorrado >1000001 and monto_total_ahorrado<=4000000 then 'plata'
+  when monto_total_ahorrado >4000001 and monto_total_ahorrado<=8000000 then 'silver'
+   when monto_total_ahorrado >8000001 and monto_total_ahorrado<=15000000 then 'GOLD'
+    when  monto_total_ahorrado<=15000000 then 'PLATINUM'
+end as"CATEGORIA"
+from cliente c natural join producto_inversion_cliente p
+
+order by appaterno asc,monto_total_ahorrado desc;
+
+
+
+--caso5
+select to_char(fecha_solic_prod,'yyyy'),
+to_char(numrun,'99G999G999')||'-'||dvrun as"RUN CLIENTE",
+INITCAP(pnombre||' '||SUBSTR(snombre,1,1)||'. '||appaterno||' '||apmaterno) as"NOMBRE CLIENTE",
+COUNT(COD_PROD_INV)AS "cantidad",
+to_char(monto_total_ahorrado,'999G999G999') as "MONTO TOTAL"
+from cliente c natural join producto_inversion_cliente p
+where to_char(fecha_solic_prod,'yyyy')=2022
+group by numrun,dvrun,pnombre,snombre,appaterno,apmaterno,fecha_solic_prod,MONTO_TOTAL_AHORRADO
+
+order by appaterno asc

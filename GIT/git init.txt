@@ -1,0 +1,128 @@
+CONFIGURACION INICIAL:
+GIT CONFIG --GLOBAL: configuraciones a nivel global
+GIT CONFIG --SYSTEM: configuraciones a nivel de sistema
+GIT CONFIG --LOCAL: configuraciones a nivel local
+
+user.name: cambiar el nombre de usuario
+user.email: cambiar el email
+core.editor : cambiar el tipo de editor de codigo.  "code" es visual studio code y agregarle un --wait hace que los cambios se realizen al cerrar el editor de codigo.
+
+core.autocrlf true: algo de salto en linea 
+
+=========================================================================================================================
+CD : PARA MOVERSE ENTRE CARPETAS
+
+CD .. : PARA RETR0CEDER
+
+MKDIR " nombredecarpeta" : CREAR UNA CARPETA
+
+RMDIR "nombredecarpéta": ELIMINAR CARPETA
+
+LS: VER ARCHIVOS QUE EXISTEN EN UNA CARPETA
+
+LS -a: VER ARCHIVOS OCULTOS
+
+PWD: VER NUESTRA RUTA
+
+RM "nombrearchivo": ELIMINAR ARCHIVO
+------------------------------------------------------------------------------------------------------------------------------------------
+
+GIT RESTORE "nombrearchivo": RESTATURAR ARCHIVO SUBIDO CON EL COMMIT
+
+GIT CHECKOUT "nombrearchivo": vuelve a la ultima vez que hiciste un cambio
+
+GIT INIT : CREAR O INICIAR REPOSITORIO
+
+GIT STATUS  o STATUS -S: TE DICE LO QUE SUCEDE EN EL DIRECTORIO
+
+GIT ADD "nombrearchivo" : AGREGAR ARCHIVOS O CAMBIOS
+
+GIT ADD . : AGREGAR TODOS LOS ARCHIVOS
+
+GIT RM --CACHED "nombrearchivo": Eliminar un archivo agregado
+------------------------------------------------------------------------------------------------------------------------------------------
+GIT COMMIT -M  "   ": SUBIR REPOSITORIO CON MENSAJE :
+
+GIT COMMIT -A : SUBIR TODOS LOS ARCHIVOS Y SALTANDOSE EL GIT ADD
+
+GIT COMMIT --AMEND : PODEMOS MODIFICAR EL  ULTIMO COMMIT
+
+ GIT REBASE -I HEAD~"numero": PODEMOS EDITAR UNA VERSION DEL ARCHIVO
+
+GIT REBASE --CONTINUE: PARA CONTINUAR CON TODAS LAS VERSIONES QUE TENIAMOS
+
+GIT LOG --ONELINE : TE MUESTRAN LOS CAMBIOS REALIZADOS
+
+GIT LOG --ONELINE --ALL: TE MUESTRAN LOS CAMBIOS REALIZADOS DE TODAS LAS RAMAS
+
+GIT RESET --SOFT "CODIGO": RESETEAMOS A UNA VERSION Y LO MANDA AL AREA DE PREPARACION
+
+GIT RESET --HARD  "CODIGO" : RESETEAR A UNA VERSION Y ELIMINA LAS VERSIONES ANTERIORES
+
+GIT REFLOG :NOS MUESTRA TODOS LOS COMMITS INCLUSO LOS "ELIMINADOS"
+------------------------------------------------------------------------------------------------------------------------------------------
+GIT SHOW "nombrearchivo": NOS MUESTRA INFORMACION DEL ARCHIVO
+
+GIT DIFF --STAGED: Nos muestra la diferencia en el area de preparacion, antes del commit
+
+GIT CONFIG --GLOBAL CORE.ABBREV "numero": nos abrevia la cantidad de caracteres de un id de commit
+
+GIT DIFF "id" "id2" :nos muestra la diferencia entre 2 commits
+
+GIT DIFF --name-only "id" "id2" :nos muestra el nombre de los archivos que cambiaron
+------------------------------------------------------------------------------------------------------------------------------------------
+GIT BRANCH :NOS MUESTRA TODAS LAS RAMAS CREADAS
+
+GIT BRANCH "nombre" :CREAR NUEVA RAMA
+
+GIT SWITCH "NOMBRE": PARA CAMBIAR DE RAMA
+
+GIT SWITCH -C "NOMBRE": PARA CREAR RAMA Y CAMBIARSE AUTOMATICAMENTE
+
+GIT BRANCH -D "NOMBRE": PARA ELIMINAR UNA RAMA (no podemos estar en esa misma rama si queremos eliminarla)
+
+GIT BRANCH -M "nombre" "nuevonombre": cambiar nombre
+
+GIT MERGE "NOMBRE": para fusionar 2 commits o 2 ramas
+
+GIT LOG --ONELINE --ALL --GRAPH: FORMA DE MOSTRAR LOS COMMITS EN RAMAS
+
+ git log --oneline --all --graph --pretty=format:"%C(auto)%h%d %s %C(black)%C(bold)%cr" :UNA FORMA DE MOSTRAR LOS COMMITS EN RAMAS 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+.gitignore: crear un archivo git para ignorar ciertos archivos
+DENTRO DE ESTO:
+escribir el nombre del archivo que quieras ignorar
+
+!"nombre": para no ignorarlo
+
+"nombre"/: ignora todos los archivos de una carpeta
+
+git config --global core.excludesfile "direccion": EN LA DIRECCION TENEMOS UNA IGNORACION GLOBAL LLAMADA .gitignore_global 
+-----------------------------------------------------------------------------------------------------------------------------------------
+git config --global alias."nombre" "el codigo"  :RESUMIR UN CODIGO
+-----------------------------------------------------------------------------------------------------------------------------------------
+======================================================================================================================================================================
+GITHUB
+
+GIT CLONE "url": clonar repositorio de github
+
+GIT PUSH: SUBIR A GITHUB LOS COMMITS
+
+GIT PULL :ACTUALIZAR CAMBIOS DEL GITHUB
+
+GIT FETCH: ACTUALIZA LOS CAMBIOS DE GITHUB PERO NO LOS FUSIONA AUTOMATICAMENTE
+---------------------------------------------------------------------------------------------------------------
+APRENDER:
+GIT STASH
+GIT STASH POP
+
+GIT CHERRY PICK
+
+MILESTONES
+
+REBASE Y SQUASH
+
+SUBMODULOS
+
+GIT BISECT

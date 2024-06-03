@@ -1,0 +1,190 @@
+Estructura de un bloque PL/SQL:
+PL/SQL es un lenguaje estructurado en bloques, por lo tanto la unidad básica de codificación en los programas PL/SQL son bloques lógicos. Los bloques pueden contener otros sub-bloques dentro de 
+ellos con las mismas características. 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------TIPOS DE BLOQUES SQL:
+Un programa PL/SQL comprende uno o más bloques. Estos bloques pueden estar completamente separado o anidado dentro de otro bloque.
+Los Bloques Anónimos (Anonymous Blocks) son bloques PL/SQL sin nombre, no se almacenan en la base de datos y por lo tanto se compilan cada vez que son ejecutados.
+
+Los Subprogramas, son bloques PL/SQL con nombre y que pueden ser almacenados en la Base de Datos: 
+
+Procedimientos (Procedures): son bloques PL/SQL que ejecutan una secuencia de acciones. Una vez compilados quedan en la Base de Datos y pueden ser utilizados por múltiples aplicaciones. Se compilan cada vez que son ejecutados.
+
+Funciones (Functions): son bloques PL/SQL que tienen las mismas características de un procedimiento almacenado. La diferencia radica en que debe retornar un valor. Las funciones y procedimientos se pueden agrupar en estructuras llamadas Paquetes (Packages).
+
+Paquetes (Packages): es una estructura PL/SQL que permite almacenar en forma conjunta una serie de objetos relacionados. Dentro de un paquete se pueden incluir procedimientos, funciones, cursores, tipos y variables.
+
+Disparadores (Triggres): es un bloque PL/SQL que se ejecuta cuando ocurre un evento particular sobre la tabla al que está asociado.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+BLOQUE ANONIMO:
+DECLARE (Opcional)
+/* */
+BEGIN(Obligatorio)
+/* */
+EXCEPTION(Opcional)
+/* */
+END (Mandatorio)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------PROCEDIMIENTO ALMACENADO:
+
+CREATE OR REPLACE PROCEDURE
+/**/
+BEGIN(Obligatorio)
+/* */
+EXCEPTION(Opcional)
+/* */
+END (Mandatorio)
+-----------------------------------------------------------------------------------------------------------------------------------
+TRIGGER:
+CREATE OR REPLACE TRIGGER
+/**/
+BEGIN(Obligatorio)
+/* */
+EXCEPTION(Opcional)
+/* */
+END (Mandatorio)
+-----------------------------------------------------------------------------------------------------------------------------------
+FUNCTION:
+CREATE OR REPLACE FUNCTION
+/**/
+BEGIN(Obligatorio)
+/* */
+EXCEPTION(Opcional)
+/* */
+END (Mandatorio)
+-----------------------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE PACKAGE
+/**/
+BEGIN(Obligatorio)
+/* */
+EXCEPTION(Opcional)
+/* */
+END (Mandatorio)
+==================================================================================================================================
+VARIABLES DE UN BLOQUE PL/SQL
+
+En lenguaje PL/SQL se pueden declarar variables y luego usarlas en las sentencias SQL y sentencias PL/SQL del bloque. Las variables se utilizan principalmente para el almacenamiento de datos y la manipulación de los valores almacenados. La reutilización es otra ventaja de la declaración de variables. Después de que se declaran las variables, se pueden utilizar varias veces en una aplicación haciendo referencia a ellas varias veces en diferentes declaraciones.
+-Debe comenzar con una letra
+-Puede incluir letras
+-Puede incluir numeros
+-Puede incluir los simbolos dolar,numero y guin bajo
+-No debe contener palabras reservadas
+-Puede tener un largo maximo de 128 caracteres
+----------------------------------------------------------------------------------------------------
+TIPOS DE VARIABLES:
+Tipos de datos escalares: los tipos de datos escalares tienen un solo valor. El valor depende del tipo de datos de la variable. PL / SQL también permite variables booleanas.
+
+Tipos de datos compuestos: los tipos de datos compuestos contienen elementos internos que son escalar o compuesto. Los Registros y Tablas son ejemplos de tipos de datos compuestos.
+
+Tipos de datos de referencia: los tipos de datos de referencia tienen valores llamados punteros que apuntan a un lugar de almacenamiento.
+
+Tipos de datos LOB: los tipos de datos LOB tienen valores llamados localizadores que especifican la ubicación de los objetos grandes (como imágenes gráficas ) que se almacenan fuera de la tabla.
+
+Variables Bind: son variables de enlace que se declara en el entorno del servidor y se puede utilizar después  para transmitir valores de ejecución.
+-------------------------------------------------------------------------------------------------------------------------------------------
+SINTAXIS:
+identificador [CONSTANT] tipo_de_dato [NOT NULL]   [:= | DEFAULT expr ];
+
+identificador: es el nombre de la variable.
+CONSTANT: indica que el valor de la variable no puede ser modificado. Las variables constantes deben ser inicializadas.
+tipo_de_dato: indica que la variable es del tipo escalar, compuesto o del tipo LOB.
+NOT NULL: indica que la variable debe contener un valor. Una variable NOT NULL debe ser inicializada con algún valor.
+DEFAULT expr: es cualquier expresión PL/SQL que puede ser una expresión literal, otra variable o incluso una expresión que utiliza una función que se usa para asignar un valor por defecto a la variable.
+-------------------------------------------------------------------------------------------------------------------------------------------
+TIPOS DE DATOS:
+TRUE representa un valor booleano.
+ 25-ENE-2021 representa una fecha.
+ La imagen representa un BLOB.
+ El texto del cuento de Blancanieves puede representar un tipo de dato VARCHAR2 o CLOB.
+ 256120.08 representa un tipo de datos NUMBER con precisión y escala.
+ El cinta de película representa un BFILE.
+ El nombre de la ciudad de Atlanta representa un tipo de datos VARCHAR2.  
+
+------------------------------------------------------------------------------------------------------------------------------------------
+TIPO DE DATO ESCALAR:
+Un tipo de datos escalar posee un valor único y no tiene componentes internos. Los tipos de datos escalares se pueden clasificar en cuatro categorías: número, caracter, fecha y booleanos. Los tipos de datos de caracteres y número tienen subtipos que asocian un tipo base. Por ejemplo, INTEGER y POSITIVE son subtipos del tipo base NUMBER.
+------------------------------------------------------------------------------------------------------------------------------------------
+TIPOS DE DATOS ESCALAR MAS USADOS:
+CHAR [(largo_máximo)]: Tipo base  para datos caracter de largo fijo hasta 32.767 bytes. Si no se especifica un valor máximo, el largo por defecto 1. 
+
+VARCHAR2(largo_máximo): Tipo base para datos caracter de largo variable hasta 32.767 bytes. No existe un tamaño por defecto para este tipo.
+
+NUMBER[(presición,escala)]: 
+Precisión: total de dígitos. Puede tener un entre 1 y 38. El valor por defecto es 38
+Escala: del total de dígitos cuántos son decimales. Puede tener un rango de -84 a 127 y puede ser omitido, con lo cual se considerará que su valor por defecto es 0.
+
+BINARY_INTEGER: Tipo base  para enteros entre -2.147.483.647 y 2.147.483.647.
+
+PLS_INTEGER: Tipo base para números enteros entre -2.147.483.647 y 2.147.483.647. Necesitan menos almacenamiento y son más rápidos que los BINARY_INTEGER. Las operaciones aritméticas sobre valores PLS_INTEGER y BINARY_INTEGER son más rápidas que sobre valores NUMBER.
+
+BINARY_FLOAT: Representa el número de punto flotante en formato IEEE 754. Requiere 5 bytes para almacenar el valor.
+
+BINARY_DOUBLE: Representa el número de punto flotante en formato IEEE 754. Se requiere 9 bytes para almacenar el valor.
+
+DATE: Tipo base  fecha y hora. Date incluye la hora del día en segundos. El rango de fechas está entre 4712 A.C y 9999 D.C.
+
+TIMESTAMP [(precisión)]: Este tipo de dato es una extensión de DATE, almacena año, mes, día, hora, minuto, segundo y fracción de segundo. La precisión indica el número de dígitos para la fracción de segundos. El rango es de 0 a 9 y el valor por defecto es 6.
+
+TIMESTAMP [(precisión)] WITH TIME ZONE: Este tipo de dato amplía el tipo de datos TIMESTAMP, incluye un desplazamiento de zona horaria. El desplazamiento de la zona horaria es la diferencia (en horas y minutos) entre la hora local y la hora universal coordinada (UTC), anteriormente conocido como meridiano de Greenwich. En la sintaxis, el parámetro de precisión es opcional y especifica el número de dígitos de la parte fraccionaria del campo de los segundos. Para especificar la precisión se debe utilizar un número entero en el rango de 0-9. El valor predeterminado es 6.
+
+TIMESTAMP [(precisión)] WITH LOCAL TIME ZONE: También amplía el tipo de datos TIMESTAMP, incluye un desplazamiento de zona horaria. El desplazamiento de la zona horaria es la diferencia (en horas y minutos) entre la hora local y la hora universal coordinada (UTC), anteriormente conocido como meridiano de Greenwich. En la sintaxis, el parámetro de precisión opcional especifica el número de dígitos de la parte fraccionaria del campo de los segundos. No se puede utilizar una constante simbólica o variable para especificar la precisión, es necesario utilizar un literal entero en el rango de 0-9. El valor predeterminado es 6. 
+Este tipo de datos difiere de TIMESTAMP WITH TIME ZONE en que al insertar un valor en una columna de base de datos, el valor se normaliza con la zona horaria de base de datos, y el desplazamiento de zona horaria no se almacena en la columna. Al recuperar el valor, el servidor Oracle devuelve el valor de su zona horaria sesión local.
+
+INTERVAL YEAR [(precisión)] TO MONTH: este tipo de dato se usa para almacenar y manipular los intervalos de años y meses. En la sintaxis, la precisión especifica el número de dígitos en el campo año. No se puede utilizar una constante simbólica o variable para especificar la precisión, es necesario utilizar un literal entero en el rango 0-4. El valor predeterminado es 2.
+
+INTERVAL DAY [(precisión1)] TO SECOND [(precisión2)]: Se utiliza este tipo de dato para almacenar y manipular los intervalos de días, horas, minutos y segundos. En la sintaxis, precisión1 y precisión2 especifican el número de dígitos en el campo de día y en el campo segundo, respectivamente. En ambos casos, no se puede utilizar una constante simbólica o variable para especificar la precisión, es necesario utilizar un literal entero en el rango de 0-9. Los valores por defecto son 2 y 6, respectivamente.
+
+BOOLEAN: Tipo base que almacena uno de tres posibles valores usados para cálculos lógicos: TRUE, FALSE o NULL.
+------------------------------------------------------------------------------------------------------------------------------------------
+USO DE VARIABLE %TYPE:
+
+identificador    tabla.nombre_columna%TYPE;
+Identifcador     variable%TYPE
+
+El atributo %TYPE es usado con frecuencia cuando el valor almacenado en la variable será obtenido desde una tabla en la Base de Datos. Cuando se usa el atributo %TYPE para declarar una variable se debe usar como prefijo el nombre de la tabla y columna de la tablas de la Base de Datos a la que se hace referencia. Si se hace referencia a una variable declarada previamente, el prefijo es el nombre de la variable.
+
+En la Sintaxis:
+identificador: es el nombre de la variable para almacenar los datos.
+tabla.nombre_columna: hace referencia al tipo de dato de la columna en la tabla sobre la cual la variable está basada.
+variable: hace referencia a la variable sobre la cual la nueva variable que se define está basada.
+------------------------------------------------------------------------------------------------------------------------------------------
+VARIBALES BIND:
+Existen dos buenas razones de usar las variables Bind dentro de los programas PL/SQL:
+Seguridad: 
+Son la mejor manera para prevenir una inyección de código SQL.
+Rendimiento:
+La base de datos puede reutilizar el plan de ejecución cuando la misma sentencia se ejecuta varias veces, evitando así uso de tiempo de ejecución para volver a construir un nuevo plan de ejecución de la sentencia. Si se usan valores diferentes dentro de la sentencia SQL, la base de datos considera que es una sentencia diferente y por lo tanto crea un nuevo plan de ejecución.
+
+Sintaxis:
+VAR|VARIABLE identificador tipo_de_dato
+
+Sintaxis para asignarle valor fuera del bloque PL/SQL:
+EXEC :identificador:=valor
+
+Sintaxis para asignarle valor en el bloque PL/SQL
+BEGIN
+     :identificador:=valor;
+……………
+-----------------------------------------------------------------------------------------------------------------------------------------
+Obtener información en Bloques PL/SQL usando Variables Escalares y BIND
+
+SINTAXIS:
+  SELECT  lista_seleccionar
+    INTO  {nombre_variable [, nombre_variable] ... | nombre_registro}  
+ FROM   nombre_tabla
+[WHERE condición]
+HAVING condición_grupo
+[ORDER  BY {columna, alias, expresión, posición_numérica} [ASC|DESC]];
+
+lista_seleccionar: lista de a lo menos una columna y puede incluir expresiones SQL, funciones de una fila, funciones de grupo, subconsultas y operaciones matemáticas.
+nombre_variable: variable escalar que almacenará el valor recuperado.
+nombre_registro: es un registro PL/SQL que almacenará la fila completa recuperada. 
+nombre_tabla: especifica el nombre de tabla(s) de la Base de Datos.
+condición: está compuesta de nombres de columnas, expresiones, constantes y operadores de comparaciones. También puede incluir subconsultas.
+condición_grupo: especifica las condición basada en una función de grupo que las filas deben cumplir. También puede incluir subconsultas.
+
+
+
+
+
+
+
+

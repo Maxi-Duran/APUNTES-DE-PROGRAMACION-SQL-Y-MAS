@@ -1,0 +1,101 @@
+
+--caso 1 parte 1 guia 5 sets
+select ts.descripcion||','|| s.descripcion as "ssalud",
+count(*)AS"TOTAL ATENCIONES",'Con descuento' as"Corresponde descuento"
+from atencion at join paciente p
+using (pac_run)
+join salud s
+using(sal_id)
+join tipo_Salud ts
+using(tipo_sal_id)
+where to_char(fecha_Atencion,'mm')=to_char(sysdate,'mm')-1
+having count(*)>(select round(avg(count(*)))
+from atencion
+Where to_char(fecha_atencion,'mm')=to_char(sysdate,'mm')-1
+group by to_char(fecha_atencion,'dd/mm'))
+group by ts.descripcion,s.descripcion
+
+union
+
+select ts.descripcion||','|| s.descripcion as "ssalud",
+count(*)AS"TOTAL ATENCIONES",'sin descuento' as"Corresponde descuento"
+from atencion at join paciente p
+using (pac_run)
+join salud s
+using(sal_id)
+join tipo_Salud ts
+using(tipo_sal_id)
+where to_char(fecha_Atencion,'mm')=to_char(sysdate,'mm')-1
+having count(*)<=(select round(avg(count(*)))
+from atencion
+Where to_char(fecha_atencion,'mm')=to_char(sysdate,'mm')-1
+group by to_char(fecha_atencion,'dd/mm'))
+group by ts.descripcion,s.descripcion;
+
+
+
+
+--caso 1 guia 4 subconsultas
+
+select ts.descripcion||','||s.descripcion,
+count(*)
+from atencion a join paciente p
+using(pac_run)
+join salud s
+using(sal_id)
+join tipo_salud ts
+using(tipo_sal_id)
+where to_char(fecha_Atencion,'mm')=to_char(sysdate,'mm')-2
+having count(*)>(select round(avg(count(*)))
+from atencion
+where to_char(fecha_Atencion,'mm')=to_char(sysdate,'mm')-2
+group by to_char(fecha_Atencion,'dd/mm'))
+group by ts.descripcion,s.descripcion;
+
+
+
+
+--caso 2 guia 4
+
+select nombre as"especialidad",to_char(med_run,'99G999G999')||'-'||dv_run as"run",pnombre||' '||snombre||' '||apaterno||' '||amaterno as"nombre"
+from medico m join especialidad_medico em
+using(med_run)
+join especialidad es
+using(esp_id)
+where med_run in(select med_run 
+from atencion join medico
+using(med_run)
+where to_char(fecha_Atencion,'yyyy')=to_char(sysdate,'yyyy')-2
+having count(esp_id)<10
+group by med_run,dv_run)
+order by 1 ,apaterno;
+
+
+
+--CASO 3 GUIA 4
+
+
+
+
+SELECT 
+    nombre AS "atencion",
+    pnombre || ' ' || snombre || ' ' || apaterno || ' ' || amaterno AS "nombre",
+    telefono,
+    SUBSTR(nombre, 1, 2) || '' || SUBSTR(apaterno, -3, 2) || '' || SUBSTR(telefono, -3, 3) || '' || TO_CHAR(fecha_contrato, 'ddmm') || '@medicocktk.cl.' AS "correo medico",
+    nvl(a.count_atenciones, 0) AS "count_atenciones"
+FROM 
+    unidad u
+JOIN 
+    medico m USING(uni_id)
+LEFT JOIN (SELECT  med_run,
+COUNT(*) AS count_atenciones
+FROM 
+atencion
+WHERE 
+TO_CHAR(fecha_Atencion, 'yyyy') = TO_CHAR(SYSDATE, 'yyyy') - 1
+GROUP BY med_run) a 
+ON m.med_run = a.med_run
+        
+GROUP BY pnombre, snombre, apaterno, amaterno, telefono, nombre, fecha_contrato, a.count_atenciones
+
+ORDER BY 1 ASC, apaterno;

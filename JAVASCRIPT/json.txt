@@ -1,0 +1,7 @@
+El formato de JSON implica la definición de una estructura encerrada entrelos símbolos { }, mientras que una lista o un arreglo de objetos estaencerrada en [ ]
+
+Dentro de esta estructura se definen pares ordenados de atributo con unvalor en el formato “atributo”:”valor”.
+
+Los pares de atributo valor se separan por una , (coma)
+
+En JSON los valores de los atributos pueden ser una cadena de texto, unnúmero, un arreglo, un valor boolean, un valor null u otro objeto JSON.

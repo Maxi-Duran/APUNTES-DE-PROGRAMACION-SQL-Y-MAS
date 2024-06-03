@@ -1,0 +1,49 @@
+input,textarea{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    border: none;
+    border-left:2px solid rgb(21, 20, 20);
+    box-shadow: 0px 0px 15px #0001;
+    background-color: transparent;
+    border: 1px solid rgb(125, 121, 121);
+    color: white;
+}
+h5{
+    margin-bottom: 10px;
+    
+}
+
+.form-input{
+    padding: 10px 20px;
+}
+body{
+    margin:0 ;
+    background-color: #222;
+    color: #eee;
+}
+form{
+    background-color: transparent;
+    padding: 20px 0px;
+    margin: auto;
+    max-width: 500px;
+    box-shadow: 0px 0px 50px black;
+    margin-top: 50px;
+    
+}
+
+h2{
+    text-align: center;
+    font-family: sans-serif;
+    margin: auto;
+    margin-bottom: 10px;
+    
+}
+label{
+    line-height: 2;
+}
+
+.checkbox{
+    width: auto;
+}
+

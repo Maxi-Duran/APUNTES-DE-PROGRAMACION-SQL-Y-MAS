@@ -1,0 +1,294 @@
+Familiares de python
+cython
+jython
+pypy
+micropython
+=============================================================================
+
+
+funcion: (print)
+
+print(0o123) SACAR OCTAL
+
+print(0x123) sacar hexadecimal
+
+print(3e8) #300000000.0  e8 representa al cantida de ceros
+=============================================================================
+
++: sumar
+
+-: restar
+
+/:dividir
+
+//: divide y redondea habia abajo
+
+%: modulo y te da lo que sobra de la division
+
+**: exponente (en python empieza a resolver desde el lado derecho
+=============================================================================
+
+
+libreria= time  
+
+time.sleep(1)  # cuenta un for o un codigo por segundo
+
+=============================================================================
+
+numeros pares= if i % 2 != 0:
+
+numeros impares= if i % 2 != 1:
+
+=============================================================================
+'False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda'
+'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+=============================================================================
+(APRENDER BITS) EN PYTHON
+(aprender tuplas y diccionarios en python)
+=============================================================================
+insert: agrega elementos a la lista en un lugar especificado
+GLOBAL "variable"=permitimos que la variable tenga un alcanze global
+=============================================================================
+TUPLAS:
+Las Tuplas son colecciones de datos ordenadas e inmutables. Se puede pensar en ellas como listas inmutables. Se definen con paréntesis.
+
+Lo primero que distingue una lista de una tupla es la sintaxis empleada para crearlas - las tuplas utilizan paréntesis, mientras que las listas usan corchetes, aunque también es posible crear una tupla tan solo separando los valores por comas.
+Observa el ejemplo:
+
+tuple_1 = (1, 2, 4, 8)
+tuple_2 = 1., .5, .25, .125
+
+Qué más pueden hacer las tuplas?
+la función len() acepta tuplas, y regresa el número de elementos contenidos dentro;
+el operador + puede unir tuplas (ya se ha mostrado esto antes)
+el operador * puede multiplicar las tuplas, así como las listas;
+los operadores in y not in funcionan de la misma manera que en las listas.
+
+count()=contar tuplas
+
+tuple(lista)=convertir una lista en tupla
+=============================================================================
+DICCIONARIOS:
+Cómo crear un diccionario?
+Si deseas asignar algunos pares iniciales a un diccionario, utiliza la siguiente sintaxis:
+
+dictionary = {"gato": "chat", "perro": "chien", "caballo": "cheval"}
+phone_numbers = {'jefe': 5551234567, 'Suzy': 22657854310}
+empty_dictionary = {}
+ 
+print(dictionary)
+print(phone_numbers)
+print(empty_dictionary)
+
+Un diccionario en Python funciona de la misma manera que un diccionario bilingüe. Por ejemplo, se tiene la palabra en español "gato" y se necesita su equivalente en francés. Lo que se haría es buscar en el diccionario para encontrar la palabra "gato". Eventualmente la encontrarás, y sabrás que la palabra equivalente en francés es "chat".
+
+sorted()=para que la salida este ordenada
+
+update()=agregar un elemento al diccionario
+del=para eliminar un elemnto del diccionario
+popitem=para eliminar el ultimo elemento del diccionario
+
+dict(tupla o lista)=convertir a diccionario
+=============================================================================
+EXCEPCIONES:
+try:
+except:
+
+raise: se usa para indicar que se ha producido un error o una condición excepcional.
+
+assert:i la expresión se evalúa como True (Verdadera), o un valor numérico distinto de cero, o una cadena no vacía, o cualquier otro valor diferente de None, no hará nada más. parecido a un if
+
+TIPOS DE ERRORES:
+ZeroDivisionError
+ValueError
+TypeError
+AttributeError
+SyntaxError
+ArithmeticError
+AssertionError
+BaseException
+IndexError
+OverflowError
+=============================================================================
+MODULOS
+-MATH: Funciones matematicas
+-RANDOM: Lo dice el nombre
+-Sleep: tiempo
+-PLATFORM:informacion del pc o del usuario:
+	MACHINE: info del pc
+	PROCESSORr: nombre del procesador
+	SYSTEM: sistema operativo
+	VERSION: la version
+
+-----------------------------------------------------------------------------------------
+
+-FROM MATH IMPORT SIN
+-IMPORT MATH
+-IMPORT MATH AS 
+
+EL USO DE DIR PARA REVELAR TODO LO QUE TRAE UN MODULO:
+
+import random
+  
+for name in dir(random):
+  print(name, end="∖t")
+
+=============================================================================
+instalador de paquetes de python(PIP)
+pip help en terminal
+=============================================================================
+CADENAS PYTHON
+
+Las cadenas pueden ser concatenadas usando el operador +, y replicadas usando el operador *. Por ejemplo:
+str1 = 'a'
+str2 = 'b'
+
+print(str1 + str2)
+print(str2 + str1)
+print(5 * 'a') //podemos ver q se multiplica por 5 el a
+print('b' * 4)//podemos ver q se multiplica por 4 el b
+
+INDEXAR CADENAS
+the_string = 'silly walks'
+
+for ix in range(len(the_string)):
+    print(the_string[ix], end=' ')
+
+print()
+
+ITERACION CADENAS
+
+the_string = 'silly walks'
+
+for character in the_string:
+    print(character, end=' ')
+
+print()
+
+REBANDAS CADENAS
+alpha = "abdefg"
+
+print(alpha[1:3])
+print(alpha[3:])
+print(alpha[:3])
+print(alpha[3:-2])
+print(alpha[-3:4])
+print(alpha[::2])
+print(alpha[1::2])
+
+OPERADORES  IN- NOT IN
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+print("f" in alphabet)
+print("F" in alphabet)
+print("1" in alphabet)
+print("ghi" not in alphabet)
+print("Xyz" in alphabet)
+
+ASSCI/UNICODE
+ord()
+Si deseas saber el valor del punto de código ASCII/UNICODE de un carácter específico, puedes usar la función ord() (proveniente de ordinal).
+
+chr()
+Si conoces el punto de código (número) y deseas obtener el carácter correspondiente, puedes usar la función llamada chr().
+La función toma un punto de código y devuelve su carácter.
+
+min()
+Esta función encuentra el elemento mínimo de la secuencia pasada como argumento. Existe una condición - la secuencia (cadena o lista) no puede estar vacía, de lo contrario obtendrás una excepción ValueError.
+
+max()
+El elemento maximo
+
+index()
+El método index() (es un método, no una función) busca la secuencia desde el principio, para encontrar el primer elemento del valor especificado en su argumento.
+
+list()
+La función list() toma su argumento (una cadena) y crea una nueva lista que contiene todos los caracteres de la cadena, uno por elemento de la lista.
+
+count()
+El método count() cuenta todas las apariciones del elemento dentro de la secuencia. La ausencia de tal elemento no causa ningún problema.
+=============================================================================
+METODOS DE CADENAS
+
+.capitalize(): el primer valor de la cadena la convierte en mayuscula yu las demas en  minusuculas
+
+.center(): genera una copia de la cadena original, tratando de centrarla dentro de un campo de un ancho especificado.
+
+.endswith():comprueba si la cadena dada termina con el argumento especificado y devuelve True(verdadero) o False(falso), dependiendo del resultado.
+
+.find():busca una subcadena y devuelve el índice de la primera aparición de esta subcadena
+
+.isalnum():comprueba si la cadena contiene solo dígitos o caracteres alfabéticos (letras) y devuelve True (verdadero) o False (falso)
+
+.isalpha(): comprueba si la cadena contieme solamente caracteres alfabeticos
+
+.isdigit(): comprueba si la cadehna contiene solamente digitos
+
+.islower(): comprueba si la cadena contiene solamente caracteres en minusuculas
+
+.isspace(): comprueba si la cadena contiene espacios en blancos
+
+.isupper(): comprueba si la cadena contiene solamente caracteres en mayusculas
+
+.join(): el método realiza una unión y espera un argumento del tipo lista; se debe asegurar que todos los elementos de la lista sean cadenas
+ejemplo de join :print(",".join(["omicron", "pi", "rho"]))
+
+.lower():genera una copia de una cadena, reemplaza todas las letras mayúsculas con sus equivalentes en minúsculas
+
+.lstrip():devuelve una cadena recién creada formada a partir de la original eliminando todos los espacios en blanco iniciales.
+
+.replace():con dos parámetros devuelve una copia de la cadena original en la que todas las apariciones del primer argumento han sido reemplazadas por el segundo argumento. se pueden un tercer arguementos numerico para controlar el total de veces q remplaza
+
+.rfind():los métodos de uno, dos y tres parámetros denominados rfind() hacen casi lo mismo que sus contrapartes (las que carecen del prefijo r), pero comienzan sus búsquedas desde el final de la cadena, no el principio (de ahí el prefijo r, de reversa).
+
+rstrip(): devuelve una cadena recién creada formada a partir de la original eliminando todos los espacios en blanco finales.
+
+.split():divide la cadena y crea una lista de todas las subcadenas detectadas.
+
+.starswtih():comprueba si la cadena dada comienza con el argumento especificado y devuelve True(verdadero) o False(falso), dependiendo del resultado.
+
+.strip():crea una nueva cadena que carece de todos los espacios en blanco iniciales y finales.
+
+.swapcase():crea una nueva cadena intercambiando todas las letras por mayúsculas o minúsculas dentro de la cadena original
+
+.title():cambia la primera letra de cada palabra a mayúsculas, convirtiendo todas las demás a minúsculas.
+
+.upper(): hace una copia de la cadena de origen, reemplaza todas las letras minúsculas con sus equivalentes en mayúsculas,
+
+str(): convertir un numero a cadena
+
+int(): convertir cadena a numero
+
+float(): convertir cadena a valor punto flotante
+
+========================================================================================================================
+PROGRAMACION ORIENTADA A OBJETOS
+__init__= es un constructor obligatorio
+
+super().__init__(): heredar desde la clase padre
+
+issubclass()=para comprobar si una subclase es verdadero de otra clase
+
+isinstance()=comprobacion si una instancia viene de tal clase
+
+mro(): orden del mro
+
+@decorador: funcion decoradora  es todo el codigo que hicimos arriba pero resumido
+---------------------------------------------------------------------------------------------
+GETTER AND SETTER:
+@property: le decimos que el getter es una propiedad
+
+@get_nombre.setter: decorador para poder modificar la propiedad (setter)
+---------------------------------------------------------------------------------------------
+from ABC import abstractclassmethod : para poder crear clases abstractas
+
+__str__:devolver una representación de cadena (string) de una instancia de una clase
+
+__add__: permite la definición de un comportamiento personalizado para el operador + en nuestra clase
+
+========================================================================================================================
+Libreria textblob
+es una librería de procesamiento del texto para Python que permite realizar tareas de Procesamiento del Lenguaje Natural como análisis morfológico, extracción de entidades, análisis de opinión, traducción automática, etc.
+
+
+

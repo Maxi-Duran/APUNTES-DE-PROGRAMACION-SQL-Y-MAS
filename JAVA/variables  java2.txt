@@ -1,0 +1,22 @@
+La variable tipo BOOLEAN se utiliza para indicar si el resultado es verdadero o falso.
+
+VARIABLES TIPO ENTERO
+
+
+La variable tipo BYTE permite declarar datos enteros comprendiso entre -128 y +127(un byte se define como un conjunto de 8 bits, independientemente de la forma.) (ENTERO DE UN BYTE)
+
+la variable tipos SHORT permite declarar datos enteros comprendidos entre -32768 y +32767(16 bits de longitus) (ENTERO CORTO)
+
+la variable tipo INT declara datos enteros comprendidos entre -2147483648 y +2147483647 (32 bits de longitud) (ENTERO)
+
+la variable tipo LONG permite declarar datos enteros comprendiso entre los valores -9223372036854775808 y + 9223372036854775807 (64 bits de longitus). (ENTERO LARGO)
+
+La variable tipo CHAR se utiliza para declarar datos enteros en el rango 0 a 65535
+los valores 0 a 127 se corresponden con los caracteres ASCII del mismo codigo.
+El juego de caracteres ASCII conforma un aparte muy pequeda del juego de caracteres UNICODE utilizado por java para representar los caracteres. UNICODE es un coidgo de 16 bits(valores de 0 a 65535). Esto es cada caracter ocupa 2 bytes, con el unico proposito de internacionalizar el lenguaje. 
+
+VARIABLES TIPO REALES
+La variable tipo FLOAT (32 bits de longitud) se utiliza para declarar un dato que puede contener una parte decimal.Los datos de tipo float almacenan valores cona precision aproximada de 6 digitos.
+Para especificar que una constante es de tipo float, hay que añadir al final de su valor la letra f o F, de lo contrario sera considerada de tipo double.  (PUNTO FLOTANTE DE PRECISION SIMPLE)
+
+La variable de tipo DOUBLE(64 bits de longitud) se utiliza para declarar un dato que puede contener una parte decimal.Los datos de tipo double almacenan valores con una preciosion aproximada de 16 digitos. (PUNTO FLOTANTE DE PRECISION DOBLE)

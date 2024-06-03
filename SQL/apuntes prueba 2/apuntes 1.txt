@@ -1,0 +1,73 @@
+
+--caso1
+select carreraid as "Identificacion de la carrera",
+count(carreraid),
+'le corresponde'||to_char(30200*count(carreraid),'999G999G999')||' del presupuesto total asignado para publicidad' as"MONTO POR PUBLICIDAD"
+from alumno
+group by carreraid
+order by 2 desc,1 desc;
+
+--caso3
+
+select to_char(run_jefe,'99G999G999') as "run jefe sin dv",
+COUNT(run_emp) as"Total de empleados a su cargo",
+to_char(max(salario),'999G999G999') as"Salario maximo",
+count(run_emp)||'0% del salario maximo',
+to_char(max(salario)*COUNT(run_emp),'999G999G999') as"Bonificacion"
+from empleado
+group by run_jefe
+having run_jefe>0
+order by 2 asc;
+
+--caso 4
+
+select id_escolaridad as "Escolaridad",
+case when id_escolaridad=50 then 'Superior instituto profesional'
+when id_escolaridad=30 then'Media tecnico profesiona'
+when id_escolaridad=60 then 'Superior universidad'
+when id_escolaridad=20 then'Media cientifica humanista'
+when id_escolaridad=40 then 'Superior centro de formacion tecnica'
+when id_escolaridad=10 then 'b sica'
+end as"Descripcion escolaridad",
+count(id_escolaridad)as "total empleados", 
+to_char(max(salario),'999G999G999') as"salario maximo",
+to_char(min(salario),'999G999G999') as"Salario minimo",
+to_char(sum(salario),'999G999G999') as "Salario total",
+to_char(avg(salario),'999G999G999') as "salario promedio"
+FROM empleado
+group by id_escolaridad
+order by 3 desc;
+
+--caso 5
+
+select tituloid as"CODIGO DEL LIBRO",
+count(tituloid) as "Total de veces solicitado",
+case when count(tituloid)=1 then 'No se requiere nuevos ejemplares'
+when count(tituloid)=2 or count(tituloid)=3 then 'Se requiere comprar 1 nuevos ejemplar'
+when count(tituloid)=4 or count(tituloid)=5 then 'se requiere comprar 2 nuevos ejemplares'
+when count(tituloid)>5 then 'Se requiere comprar 4 nuevos ejemplares'
+end as"Sugerencia"
+from prestamo
+where to_char(fecha_ini_prestamo,'yyyy')=2022
+group by tituloid
+
+order by 2 desc;
+
+
+--caso 6
+
+SELECT to_char(run_emp,'99G999G999') "RUN EMPLEADO",
+
+to_char(fecha_ini_prestamo,'mm/yyyy') "MES PRESTAMOS LIBROS",
+
+COUNT(fecha_ini_prestamo) "TOTAL PRESTAMOS ATENDIDOS",
+
+to_char(COUNT(fecha_ini_prestamo) * 10000,'$99,999') "ASIGNACION POR PRESTAMOS"
+
+FROM PRESTAMO
+
+where to_char(fecha_ini_prestamo,'yyyy')=2022
+
+GROUP BY run_emp,to_char(fecha_ini_prestamo,'mm/yyyy')
+
+ORDER BY to_char(fecha_ini_prestamo,'mm/yyyy'),4 DESC, 1 DESC

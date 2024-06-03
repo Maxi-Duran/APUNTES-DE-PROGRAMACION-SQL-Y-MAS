@@ -1,0 +1,502 @@
+COUNT(*): retorna el número de filas que satisfacen el criterio de la sentencia SELECT incluyendo filas duplicadas y filas que contengan valores Nulos en cualquiera de sus columnas. Si se incluye las cláusula WHERE en la sentencia
+SELECT , COUNT(*) retorna el número de filas que satisfacen o cumplen con la condición en la cláusula WHERE.
+
+COUNT(columna|expresión): retorna el número de filas que poseen valores NO Nulos en la columnade la tabla  o expresión.
+
+COUNT(DISTINCT columna|expresión): retorna el número de filas que contengan valores diferentes No Nulos en la columna de la tabla o expresión.
+
+HAVING: puede preceder la cláusula GROUP BY,  pero se recomienda, por una cuestión de lógica, colocar primero la cláusula GROUP BY. Los grupos se forman y las funciones de grupo se calculan antes de aplicar la cláusula HAVING para los grupos.
+
+GROUP BY columnas : especifica las columnas cuyos valores determinan la base para agrupar las filas
+
+==========================================================================================================
+
+AVG: calcula el promedio del valor de columna|expresión, ignorando los valores Nulos.
+COUNT: cuenta el número de filas, donde columna|expresión puede ser el nombre de una columna.
+MAX: obtiene el máximo valor de columna|expresión, ignorando los valores Nulos.
+MIN: obtiene el mínimo valor de columna|expresión, ignorando los valores Nulos.
+SUM: suma los valores de columna|expresión, ignorando los valores Nulos.
+
+
+==========================================================================================================
+
+FUNCIONES DE CARACTERES
+Funciones de conversión del texto a mayúsculas y minúsculas:
+  LOWER: Convierte el texto a minúsculas
+  UPPER: Convierte el texto a mayúsculas
+  INITCAP: Coloca la primera letra de cada palabra en mayúscula.
+Funciones de reemplazo o manipulación de caracteres:
+CONCAT: concatena el valor del primer caracter con el valor del segundo caracter. Equivalente al operador de concatenación ||.
+  SUBSTR: obtiene los n siguientes caracteres de la columna o texto a partir de la posición m. Si no se indica n, se recuperan los caracteres desde la posición m hasta el final.
+  LENGTH: obtiene el número de caracteres o largo de la expresión.
+  RTRIM–LTRIM: Elimina los espacios en blanco a la derecha (RTRIM) ó a la izquierda (LTRIM) de la columna o expresión.
+  REPLACE: busca el texto especificado en la columna o expresión y lo cambia por el texto indicado como reemplazo.
+  TRIM: Elimina los espacios en blanco a la izquierda y a la derecha del texto o columna.
+  LPAD-RPAD: rellena el texto a la izquierda (LPAD) ó a la derecha (RPAD) n posiciones con el caracter indicado.
+  INSTR: obtiene la posición en la se encuentra el texto buscado en la columna  o expresión. Opcionalmente se puede indicar la posición inicial (m) desde donde se desea comenzar la búsqueda y la ocurrencia o número de posición (n) del texto buscado. Por defecto ambas posiciones es 1.
+  TRIM(‘caracter’ FROM columna|expresión): Elimina el carácter especificado de la derecha e izquierda de la columna o expresión.
+UNIQUE:se utiliza para garantizar que no se inserten valores duplicados en una columna específica o combinación de columnas que participen en la restricción UNIQUE y no formen parte de la CLAVE PRIMARIA.
+GREATEST(,0): SI SALE NEGATIVO, REMPLAZA POR UN CERO
+==========================================================================================================
+
+FUNCIONES DE NUMEROS
+ROUND: redondea la columna, expresión o valor a n posiciones decimales. . Si no se especifica n o su valor es cero, el valor se redondea al valor entero. Si n es negativo, los números a la izquierda del punto decimal se redondean a decenas, centenas etc.
+TRUNC: Trunca la columna, expresión o valor a n posiciones decimales. Si no se especifica n decimales el valor es 0, por lo tanto se trunca el valor sólo en su parte entera. Por defecto en cero. Si n es negativo trunca hacia la izquierda del punto decimal (coloca cero).
+MOD: Devuelve el resto que resulta de dividir m por n.
+En el ejemplo, las funciones ROUND y TRUNC se utilizan para redondear y truncar el valor 1234.5678 de diferentes formas (recordar que en Oracle el punto corresponde a decimales). La primera función ROUND redondea el valor en dos decimales, la segunda función ROUND redondea al valor entero (sin decimales, esto es similar a ROUND(1234.5678,0), la tercera función ROUND redondeado el valor en su parte entera a la décima más cercana a 35, la primera función TRUNC muestra el valor truncado a dos decimales, la segunda función TRUNC muestra el valor truncado solo en su valor entero (esto es similar a TRUNC(1234.5678,0) y la última función TRUNC muestra el valor truncado en su parte entera y reemplazada los dos últimos números por ceros.
+
+==========================================================================================================
+
+FUNCIONES DE FECHAS
+SYSDATE: retorna la fecha y hora actual de la Base de Datos
+MONTHS_BETWEEN: obtiene la diferencia en meses entre las dos fechas. El resultado puede ser positivo o negativo. Si fecha1 es posterior a fecha2, el resultado es positivo, si fecha1 es anterior a fecha2, el resultado es negativo. La parte no entera del resultado representa una porción de la mes.
+ADD_MONTHS: añade a la fecha el número de meses indicado por n. El valor de n debe ser un número entero y puede ser negativo. Si es negativo significa que está restando meses a la fecha.
+NEXT_DAY: retorna la fecha del día de la semana del argumento busca y que es posterior a la fecha entregada. El día puede ser el nombre del día (inglés o español según como esté configurada la Base de Datos) o el número del día de la semana 1=Lunes, 2=Martes etc.
+LAST_DAY: obtiene el último día del mes de la fecha especificada.
+ROUND: redondea la fecha al formato indicado. El formato puede ser: 
+     - YEAR: redondea la fecha al año.
+     - MONTH: redondea la fecha al mes.
+TRUNC: trunca la fecha al formato indicado. El formato es el mismo al usado por ROUND.
+
+==========================================================================================================
+
+Uso de Función TO_CHAR con Fechas 
+Los elementos más usados en el formato de conversión son lo siguientes:
+YYYY: muestra el año en 4 dígitos
+YEAR: muestra el año en palabras. Si las dos primeras letras son mayúsculas, se mostrará todo en mayúscula. Si la segunda letra es minúscula, la primera letra se muestra en mayúscula y todo el resto en minúscula.
+MM: muestra el mes en dos dígitos
+MONTH:  muestra el mes en palabras. Si las dos primeras letras son mayúsculas, se mostrará todo en mayúscula. Si la segunda letra es minúscula, la primera letra se muestra en mayúscula y todo el resto en minúscula.
+MON: muestra el mes abreviado en tres letras. Si las dos primeras letras son mayúsculas, se mostrará todo en mayúscula. Si la segunda letra es minúscula, la primera letra se muestra en mayúscula y todo el resto en minúscula.
+DY: muestra el día de la semana en tres letras. Si la segunda letra es minúscula, la primera letra se muestra en mayúscula y el resto en minúscula.
+DAY: muestra el día en palabras. Si las dos primeras letras son mayúsculas, se mostrará todo en mayúscula. Si la segunda letra es minúscula, la primera letra se muestra en mayúscula y todo el resto en minúscula.
+DD. muestra el día en dos dígitos.
+Q (o q): muestra a qué trimestre corresponde la fecha.
+AM o PM: muestra el indicador del meridiano
+HH, HH12 o HH24: muestra la hora, la hora de 1-12 y muestra la hora de 0-23 respectivamente.
+MI: muestra los minutos
+SS: muestra los segundos
+Los símbolos / . Y , : estos símbolos se muestra como parte del formato.
+“caracteres_a_visualiza”: texto fijo que se muestra en el resultado
+
+==========================================================================================================
+
+FUNCIONES GENERALES
+Estas funciones trabajan con cualquier tipo de datos y se relacionan con el uso de valores nulos en la lista de expresiones:
+NVL: Si el valor de expr1 es NULO , devuelve el valor de expr2. Si no es NULO retorna el valor de expr1.
+NVL2: Devuelve el valor de expr2 si el valor de expr1 no es NULO. Si expr1 es NULO devuelve el valor de expr3.
+NULLIF: devuelve NULO si expr1 y expr2 son iguales. Si no lo son devuelve el valor de expr1.
+COALESCE: retorna el valor de expr1 si no es NULO. Si es NULO devuelve el valor de expr2 si no es NULO. Si los valores de expr1 y expr2 son NULOS devuelve el valor de expr3 sino es NULO y así sucesivamente.
+
+==========================================================================================================
+
+TIPOS DE JOIN 
+
+INNER JOIN o Combinación Interna: es un EQUIJOIN que retorna sólo las filas que tienen valores idénticos en las columnas que se comparan para unir ambas tablas. En otras palabras, aquellas filas cuyo valor de la columna que se compara existe en las dos tablas.
+SELF JOIN: es un EQUIJOIN es una unión sobre la misma tabla. Se deben diferencias ambas tablas usando ALIAS de tablas.
+OUTER JOIN o Combinación Externa:  es un EQUIJOIN que retorna las filas que tienen valores idénticos en las columnas que se comparan para unir ambas tablas y además retorna las filas de una tabla aunque éstas no tengan correspondencia de valor en la columna de comparación con la otra tabla.
+NONEQUIJOIN: es combinación interna que utiliza un operador de comparación distinto al igual (=) para unir las dos tablas como por ejemplo: < (menor que),> (mayor que), <> (distinto a), BETWEEN (entre), etc. 
+CROSS JOIN:  retorna todas las filas de todas las tablas implicadas en la unión. En otras palabras retorna el total de filas de la primera tabla multiplicadas por el total de filas de la segunda tabla (conocido como producto cartesiano).
+==========================================================================================================
+OUTER JOINS o Uniones Externas
+Son tres los tipos de OUTER JOINS o Uniones Externas :
+Una unión entre dos tablas que retorna el resultado del INNER JOIN (filas que coinciden) así como las filas de la tabla a la izquierda que no existen en tabla de la derecha del Join es una Unión Externa Izquierda o LEFT OUTER JOIN.
+Una unión entre dos tablas que retorna el resultado de un INNER JOIN, así como las filas de la tabla a la derecha que no existen en tabla de la izquierda del Join es una Unión Externa Derecha o RIGTH OUTER JOIN.
+Una unión entre dos tablas que retorna el resultado de un INNER JOIN, así como los de la Unión Externa izquierda y las filas de la Unión Externa Derecha es una Unión Externa Completa o FULL OUTER JOIN. 
+==========================================================================================================
+
+El CROSS Join o combinación cruzada, retorna todas las filas existentes en todas las tablas que se usan en la consulta. Cada fila en la primera tabla se empareja con todas las filas en la segunda tabla. Esto sucede cuando no hay relación definida entre las dos tablas. 
+==========================================================================================================
+
+Operadores SET
+Los operadores set pueden ser usados en subconsultas o subqueries.
+Las filas duplicadas son eliminadas automáticamente excepto cuando se usa UNION ALL.
+Los nombres de columnas de la primera consulta aparecen en el resultado.
+El resultado es ordenado por defecto en forma ascendente excepto cuando de usa UNION ALL.
+Los operadores set son los siguientes:
+UNION: retorna todas las filas DIFERENTES seleccionadas por cada consulta.
+UNION ALL: retorna TODAS las filas seleccionadas por ambas cada consulta, incluyendo las duplicadas.
+INTERSECT: retorna TODAS LAS FILAS IGUALES seleccionadas por ambas consultas.
+MINUS: retorna TODAS LAS FILAS DIFERENTES seleccionadas por la primera sentencia SELECT y que NO se seleccionaron en la segunda sentencia SELECT.
+==========================================================================================================
+ Subconsultas de Múltiples Filas
+Las subconsultas que devuelven más de una fila se llaman subconsultas de varias o múltiples filas. Se deben utilizar operadores de varias filas, en lugar de un operador de una sola fila, con una subconsulta de varias filas ya que esperan uno o más valores para comparar.
+IN : igual a cualquier miembro de la lista. El operador IN no puede evaluar valores NULOS, ya que en esos casos el resultado es falso y las filas no se muestran.
+ANY : compara el valor con cada valor devuelto por la subconsulta.
+ALL : compara el valor con todos los valores devueltos por la subconsulta.
+EXISTS: verifica la existencia de las filas de la query principal en el conjunto de resultados de la subconsulta.
+==========================================================================================================
+CREANDO UNA VISTA
+
+CREATE [OR REPLACE] [FORCE|NOFORCE] VIEW nombre_vista
+          [(alias[, alias]...)]
+AS subconsulta
+[WITH CHECK OPTION [CONSTRAINT nombre_constraint ]]
+[WITH READ ONLY [CONSTRAINT nombre_constraint ]];
+
+EJEMPLO: 
+CREATE VIEW v_emp_depto_80
+AS SELECT employee_id, last_name, salary
+      FROM employees
+      WHERE department_id = 80;
+
+OR REPLACE: recrea (vuelve a crear) la vista si ésta ya existe.
+
+FORCE: crea la vista sin importar que no existan las tablas bases.
+
+NOFORCE: crea la vista sólo si las tablas bases existen. Es la opción por defecto.
+
+NOMBRE_VISTA: es el nombre de la vista que se desea crear.
+
+ALIAS: especifica el nombre para las expresiones seleccionadas por la consulta de la vista. Deben coincidir con el número de expresiones seleccionadas por la vista. Si no se especifican alias, los nombres de columnas de la vista serán las columnas seleccionadas en la lista de la cláusula SELECT.
+
+subconsulta: es una sentencia SELECT completa.
+
+WITH CHECK OPTION : Especifica que solo las filas accesibles para la vista pueden ser insertadas o modificadas. La restricción que sigue a esta sección es el nombre que se le da a la restricción de tipo CHECK OPTION. Si no le asigna un nombre a la restricción, el sistema asigna un nombre por defecto en el formato SYS_Cn
+
+WITH READ ONLY: especifica que la vista sea sólo de lectura.
+==========================================================================================================
+Creando Secuencias
+CREATE SEQUENCE secuencia
+               [INCREMENT BY n]
+               [START WITH n]
+               [{MAXVALUE n | NOMAXVALUE}]
+               [{MINVALUE n | NOMINVALUE}]
+               [{CYCLE | NOCYCLE}]
+               [{CACHE n | NOCACHE}] 
+               [{ORDER | NOORDER}]; 
+EJEMPLO:
+
+CREATE SEQUENCE seq_dept_deptid
+INCREMENT BY 10
+START WITH 280
+MAXVALUE 9999
+NOCACHE
+NOCYCLE;
+
+
+SECUENCIA:  es el nombre que se le da al objeto de secuencia a crear.
+
+INCREMENT BY: indica cuánto se incrementa la secuencia cada vez que se usa. Por defecto se incrementa de uno en uno. Su incremento puede ascendente o descendente. Si el incremento es un valor negativo, el parámetro START WITH y MAXVALUE deben tener el mismo valor.
+
+START WITH: indica el valor inicial de la secuencia (por defecto 1).
+
+MAXVALUE: máximo valor que puede tomar la secuencia. 
+
+NOMAXVALUE: opción por defecto que especifica un valor máximo de 10 ^ 27 para una secuencia ascendente y -1 para una secuencia descendente.
+
+MINVALUE: mínimo valor que puede tomar la secuencia. MINVALUE debe ser menor o igual que o igual a START WITH, y debe ser menor a MAXVALUE.
+
+NOMINVALUE: opción por defecto que especifica un valor mínimo de 1 para una secuencia ascendente y - (10 ^ 26) para una secuencia descendente. 
+
+CYCLE: hace que la secuencia vuelva a empezar si se ha llegado al máximo valor. NOCYCLE es la opción por defecto.
+
+CACHE: especifica cuántos valores de la secuencia la base de datos preasigna y mantiene en memoria para un acceso más rápido. Este valor entero puede tener 28 dígitos o menos. El valor mínimo para este parámetro es 2. Si se omite tanto CACHE y NOCACHE por defecto la base de datos almacena en caché 20 números de la secuencia.
+
+ORDER: permite asegurar que Oracle generará los números de secuencia en orden de solicitud. Esta opción es útil si se está utilizando Oracle Real Application Clusters. Cuando se usa el modo exclusivo (base de datos tradicional), Oracle siempre generará números de secuencia en orden
+
+NOORDER: se usa esta opción si no se desea asegurar de que Oracle genere números de secuencia en orden de solicitud. Esta opción es la predeterminada.
+
+LUEGO DE CREAR LAS SECUENCIAS
+NEXTVAL: retorna el siguiente valor disponible de la secuencia. Ésta  retorna un valor único cada vez que es referenciado, por lo tanto es diferente para cada usuario que utilice la secuencia. Se debe calificar NEXTVAL con el nombre de la secuencia. Cuando hace referencia a secuencia.NEXTVAL, se genera un nuevo número de secuencia.
+CURRVAL: se usa para hacer referencia al valor actual de la secuencia que el usuario acaba de generar. Sin embargo, NEXTVAL se debe usar para generar un número de secuencia en la sesión del usuario actual antes de que se pueda hacer referencia a CURRVAL.  Se debe calificar CURRVAL con el nombre de la secuencia. Cuando hace referencia a secuencia.CURRVAL, se muestra el último valor generado de la secuencia.
+
+==========================================================================================================
+Creando y Usando Sinónimos
+
+CREATE [OR REPLACE] [PUBLIC] SYNONYM [esquema1.] nombre_sinónimo
+FOR [esquema2.] objeto_referenciado [@dblink];
+
+EJEMPLO:
+CREATE SYNONYM syn_deptos
+FOR departments;
+
+En la sintaxis:
+OR REPLACE: recrea (vuelve a crear) el sinónimo si éste ya existe.
+
+PUBLIC: permite que el sinónimo sea accesible por todos los usuarios. Sin embargo, el usuario debe tener los privilegios necesarios sobre el objeto referenciado por el sinónimo para que lo pueda usar.
+
+esquema1: si se indica un nombre de esquema, significa que el sinónimo es privado y solo se puede acceder a él dentro del esquema en el que ha sido creado. Un nombre de sinónimo privado debe ser único en su esquema. 
+
+nombre_sinónimo: nombre del sinónimo que se desea crear.
+
+esquema2: es el esquema que contendrá el sinónimo. Si omite el sinónimo es creado en el mismo esquema al que se está conectado. No se puede especificar un esquema para el sinónimo si ha especificado PUBLIC.
+
+objeto_referenciado: es la tabla, vista, secuencia, procedimiento, función almacenada, paquete, vista materializada, objeto de esquema de clase Java, tipos definidos por el usuario u otro sinónimo al que hace referencia.
+
+dblink: es un objeto de base de datos que se crear para acceder a una base de datos remota.
+==========================================================================================================
+Privilegios de Sistema
+
+GRANT privilegio_sistema [, privilegio_sistema...]	
+TO usuario [, usuario| rol, PUBLIC...];
+
+EJEMPLO:
+GRANT CREATE TABLE, CREATE INDEXTYPE, CREATE PROCEDURE,
+               CREATE TRIGGER, CREATE DATABASE LINK
+TO desarrollo_finanzas; 
+
+Después de crear un usuario, el DBA puede otorgar privilegios específicos del sistema a ese usuario. Algunos de los privilegios de sistema son:
+
+
+CREATE SESSION: para conectarse a la base de datos. Es el privilegio mínimo para cualquier usuario.
+
+CREATE TABLE : crear tablas en el esquema del usuario
+
+CREATE VIEW: crear vistas en el esquema del usuario
+CREATE SYNONYM: crear sinónimos
+
+CREATE SEQUENCE: crear secuencias en el esquema del usuario
+
+CREATE USER: crear usuarios
+
+DROP ANY TABLE: eliminar tablas en cualquier esquema
+
+SELECT ANY TABLE: leer datos de las tablas en cualquier esquema
+
+INSERT ANY TABLE: insertar datos en tablas en cualquier esquema
+
+UPDATE ANY TABLE: actualizar datos en tablas en cualquier esquema
+
+DELETE ANY TABLE: eliminar filas en tablas en cualquier esquema
+==========================================================================================================
+Privilegios de Objetos
+GRANT {privilegio_objeto [(columnas)] | ALL}
+ ON objeto
+ TO {usuario|rol|PUBLIC}
+ [WITH GRANT OPTION];
+
+EJEMPLO:
+
+GRANT  SELECT, INSERT
+ON  hr.departments
+TO  desarrollo_personal
+WITH GRANT OPTION 
+
+
+En la sintaxis:
+privilegio_objeto: privilegio de objeto que se otorga.
+
+ALL: especifica todos los privilegios de objeto.
+
+columnas: especifica la columna de una tabla o vista en la que se otorgan privilegios
+
+objeto: es el objeto sobre el cual se otorgan los privilegios. 
+
+usuario: usuario al que se le otorga el o los privilegios de objeto
+
+rol: es el rol al que le asigna el o los privilegios de objeto
+
+PUBLIC: otorga privilegios de objeto a todos los usuarios
+
+WITH GRANT OPTION: permite que el usuario al que se le otorgó el privilegio de objeto lo pueda otorgar a otros usuarios y roles
+
+Este tipo de permiso le permite al usuario realizar ciertas acciones en objetos de la base de datos, como una tabla, vista o un programa, etc. Si a un usuario no se le asignan estos permisos, sólo puede acceder a sus propios objetos (ver vista USER_OBJECTS). Este tipo de permisos los da el owner o dueño del objeto, el administrador de la base de datos o alguien que haya recibido este permiso explícitamente con la opción WITH GRANT OPTION.
+Los permisos sobre objetos más importantes son: SELECT, UPDATE, INSERT, DELETE, ALTER, DEBUG, EXECUTE, INDEX y REFERENCES.
+
+Cada objeto tiene un conjunto particular de privilegios que se pueden otorgar. Para los objetos más usados son los siguientes:
+
+Table: SELECT, READ (permite realizar SELECT a una tabla pero son la posibilidad de bloquear las filas, SELECT FOR UPDATE), INSERT UPDATE, DELETE, ALTER, DEBUG FLASHBACK, ON COMMIT REFRESH, QUERY REWRITE, REFERENCES, ALL
+
+View: SELECT, INSERT, UPDATE, DELETE, UNDER, REFERENCES, FLASHBACK, DEBUG
+
+Sequence: ALTER, SELECT
+Packages, Procedures, Functions (Clases Javas, otros programas): EXECUTE, DEBUG
+
+Materialized View: DELETE, FLASHBACK, INSERT, SELECT, UPDATE
+Directory: READ, WRITE
+Library: EXECUTE
+Types: EXECUTE, DEBUG, UNDER
+Operator: EXECUTE
+Indextypes: EXECUTE
+
+Con el privilegio REFERENCES, un usuario puede crear constraints de Claves Foráneas (FOREIGN KEY) que hagan referencia a tablas de otro usuario.
+Un privilegio otorgado a un sinónimo se convierte en un privilegio en la tabla base a la que hace referencia el sinónimo.
+==========================================================================================================
+CREAR ROL
+
+CREATE ROLE rol [ NOT IDENTIFIED| IDENTIFIED 
+{BY password| USING [ esquema. ] package|EXTERNALLY|GLOBALLY}] ;
+
+En la sintaxis:
+rol: especifica el nombre del rol a crear. El número máximo de roles definidos por el usuario que se pueden habilitar para un solo usuario a la vez es de 148.
+
+NOT IDENTIFIED: se especifica para indicar que el rol está autorizado por la base de datos y que no requiere de una clave para habilitar el rol.
+
+IDENTIFIED: indica que un usuario debe estar autorizado por el método especificado antes de habilitar el rol con los comandos SET ROLE.
+
+BY password: permite crear un rol local e indica que el usuario debe especificar la contraseña a la base de datos cuando habilite el rol. 
+
+USING package: permite crear un rol de aplicación, que es un rol que solo pueden habilitar las aplicaciones que usan un package autorizado. Si no se especifica un esquema, la base de datos asume que el package está en su propio esquema.
+
+EXTERNALLY: permite crear un rol externo. Un usuario externo debe estar autorizado por un servicio externo, como un sistema operativo o un servicio de terceros, antes de habilitar la función.
+
+GLOBALLY: permite crear un rol global
+==========================================================================================================================================================================
+CREAR USUARIOS
+
+CREATE USER usuario
+IDENTIFIED BY contraseña 
+[DEFAULT TABLESPACE nombre_tablespace]
+[TEMPORARY TABLESPACE nombre_tablespace]
+QUOTA tamaño {K | M} ON nombre_tablespace | QUOTA UNLIMITED ON nombre_tablespace
+[PROFILE nombre_profile]
+[PASSWORD EXPIRE]
+[ACCOUNT {LOCK|UNLOCK} ]
+
+ EJEMPLO:
+CREATE USER desa_inf 
+IDENTIFIED BY "Des_inf_12*245"
+DEFAULT TABLESPACE users 
+TEMPORARY TABLESPACE temp 
+QUOTA UNLIMITED ON users;
+GRANT CREATE SESSION TO desa_inf
+
+En la sintaxis:
+usuario: especifica el nombre del usuario a crear. Debe tener como máximo 30 caracteres, no puede caracteres especiales y debe comenzar con una letra.
+
+contraseña: indica que el usuario debe especificar esa contraseña para iniciar sesión en la base de datos. A contar de Oracle 11g, las contraseñas con CASE SENSITIVE. Además, desde la versión 12c (excepto en Oracle XE), las contraseñas deben cumplir con las siguientes condiciones:
+Debe contener mínimo 12 caracteres.
+Debe contener mínimo 1 caracter en minúscula
+Debe contener mínimo 1 caractere en mayúscula
+Debe contener mínimo 1 número
+No puede contener el nombre de la cuenta de usuario
+
+DEFAULT TABLESPACE: especifica el tablespace por defecto en que los objetos creados por el usuario quedarán almacenados. Si se omite esta cláusula, los objetos del usuario se almacenan en el tablespace por defecto de la base de datos de lo contrario se almacenan en el tablespace SYSTEM.
+
+TEMPORARY TABLESPACE: especifica el tablespace temporal del usuario. Si omite esta cláusula, entonces tablespace temporal del usuario será el tablespace por defecto de la base de datos de lo contrario será el tablespace SYSTEM.
+
+QUOTA: especifica la cantidad máxima de espacio asignado al usuario en el tablespace para almacenar sus objetos. Se puede indicar el tamaño en Kilobytes (K) o Megabytes (M). Si se especifica UNLIMITED el usuario tiene espacio ilimitado en el tablespace para almacenar sus objetos.
+
+PROFILE: especifica el perfil que se desea asignar al usuario. El perfil limita la cantidad de recursos de base de datos que el usuario puede usar. Si omite esta cláusula, entonces la base de datos Oracle asigna el perfil DEFAULT al usuario.
+
+PASSWORD EXPIRE: especifica que la contraseña del usuario caducará. Esta configuración obliga al usuario o al DBA a cambiar la contraseña antes de que el usuario pueda iniciar sesión en la base de datos.
+
+ACCOUNT LOCK|UNLOCK: especifica si la cuenta estará bloqueada o desbloqueada. Si la cuenta está bloqueada, el usuario no podrá iniciar sesión en la base de datos. El valor por defecto es UNLOCK.
+==========================================================================================================================================================================
+CREAR AREA DE ALMACENAMIENTO
+
+CREATE TABLESPACE nombre_tablespace 
+DATAFILE 'nombre_datafile' SIZE tamaño K|M
+EXTENT MANAGEMENT LOCAL 
+SEGMENT SPACE MANAGEMENT AUTO;
+
+EJEMPLO:
+
+CREATE TABLESPACE ctacte_datos 
+DATAFILE 'C:\oraclexe\datos_sistema_ctacte\datos_ctacte01.dbf' SIZE 50M
+EXTENT MANAGEMENT LOCAL 
+SEGMENT SPACE MANAGEMENT AUTO;
+
+En la sintaxis:
+nombre_tablespace: es el nombre del tablacespace permanente que se desea crear.
+
+DATAFILE nombre_datafile: especifica la ruta y nombre del archivo físico en que se almacenarán los datos de los objetos. La ruta debe existir en el servidor, de lo contrario cuando se cree el tablespace se producirá un error.
+
+SIZE tamaño: indica el tamaño en kilobytes o megabytes del datafile
+
+EXTENT MANAGEMENT LOCAL: indica que el espacio de las tablas se administrará localmente a partir de un mapa de bits creado para cada objeto.
+
+SEGMENT SPACE MANAGEMENT AUTO: especifica que será la base de datos quien efectúe la administración del espacio libre y ocupado del tablespace permanente
+==========================================================================================================================================================================
+CREANDO PERFIL DE USUARIOS
+
+CREATE PROFILE nombre_profile LIMIT 
+SESSIONS_PER_USER  número 
+CONNECT_TIME minutos
+IDLE_TIME minutos
+FAILED_LOGIN_ATTEMPTS  número
+PASSWORD_LIFE_TIME días
+PASSWORD_LOCK_TIME días
+PASSWORD_GRACE_TIME días;
+
+EJEMPLO:
+CREATE PROFILE profile_ctacte LIMIT 
+CONNECT_TIME UNLIMITED
+IDLE_TIME 30
+FAILED_LOGIN_ATTEMPTS  3
+PASSWORD_LOCK_TIME 1;
+
+En la sintaxis:
+nombre_profile: es el nombre del profile que se desea crear.
+
+Parámetros de recursos: 
+SESSIONS_PER_USER: número de sesiones concurrentes de un usuario. 
+
+CONNECT_TIME: indica cuántos minutos puede estar conectado un usuario antes de que se le desconecte automáticamente de la base de datos.
+
+IDLE_TIME: indica cuántos minutos puede permanecer inactiva la sesión de un usuario antes de que se le desconecte automáticamente de la base de datos.
+
+Gestión de Contraseñas:
+FAILED_LOGIN_ATTEMPTS: especifica el número de intentos fallidos de conexión antes del bloqueo de la cuenta.
+
+PASSWORD_LOCK_TIME: especifica el número de días que se bloqueará la cuenta tras un número de intentos fallidos de conexión.
+
+PASSWORD_LIFE_TIME: determina la duración de la contraseña en días. Después de ese perríodo, la contraseña caducará.
+
+PASSWORD_GRACE_TIME: especifica un período de gracia en días para cambiar la contraseña después de que ha caducado.
+==========================================================================================================================================================================
+MODIFICANDO CUENTAS DE USUARIOS
+
+ALTER USER nombre_usuario opciones
+opciones:
+IDENTIFIED BY contraseña
+DEFAULT TABLESPACE nombre_tablespace
+TEMPORARY TABLESPACE nombre_tablespace
+QUOTA valor {K | M} ON nombre_tablespace
+QUOTA UNLIMITED ON nombre_tablespace
+PROFILE nombre_profile
+DEFAULT ROLE rol [,rol,…]
+ACCOUNT {LOCK|UNLOCK}
+
+EJEMPLO:
+ALTER USER cons_sist_ctacte IDENTIFIED BY "Cons_ctacte.0108";
+ALTER USER cons_sist_ctacte DEFAULT TABLESPACE ctacte_datos;
+ALTER USER cons_sist_ctacte QUOTA 1M ON ctacte_datos;
+
+En la sintaxis, la opción:
+IDENTIFIED BY: modifica la contraseña
+
+DEFAULT TABLESPACE: permite modificar el tablespace por defecto
+
+TEMPORARY TABLESPACE: modifica el tablespace temporal
+
+QUOTA valor {K | M} ON: modifica la cuota asignada al tablespace que se especifica
+
+PROFILE: cambia el profile del usuario con el que se especifica
+
+DEFAULT ROLE: asigna los roles por defecto que se especifican
+
+ACCOUNT {LOCK|UNLOCK: bloquea o desbloquea la cuenta del usuario. 
+==========================================================================================================================================================================
+MODIFICANDO PERFILES DE USUARIOS
+
+ALTER PROFILE nombre_profile LIMIT 
+LIMIT { parámetros_recursos | parámetros_contraseña};
+
+EJEMPLO:
+ALTER PROFILE profile_ctacte LIMIT 
+FAILED_LOGIN_ATTEMPTS  10
+PASSWORD_LOCK_TIME 2;
+
+==========================================================================================================================================================================
+
+CREACION DE INDICES
+
+CREATE [UNIQUE] INDEX [esquema_crea_indice.]nombre_índice
+ON [esquema_dueño_tabla.]nombre_tabla (columna[, columna]...)
+[nombre_tablespace ];
+
+En la sintaxis:
+esquema_crea_indice: nombre del esquema de base de datos en donde se creará el índice.
+nombre_índice: es el nombre del índice que se desea crear.
+esquema_dueño_tabla: nombre del dueño de la tabla sobre la cual se creará el índice.
+nombre_tabla: es la tabla sobre la cual se creará en índice
+columna: especifica las columnas que conformarán el índice.
+nombre_tablespace: es el tablespace en donde se almacenará el índice. Si no se especifica, el índice será creado en el tablesapace por defecto del usuario.
+
+EJEMPLO:
+CREATE INDEX idx_emp_appaterno ON empleado(appaterno_emp);
+CREATE INDEX idx_emp_id_categoria ON empleado(id_categoria_emp);
+
+
+

@@ -1,0 +1,25 @@
+package conexcion;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+
+public class Conexcion {
+
+    
+    public static void main(String[] args) {
+        Connection con=null;
+        //datos para conexion con bd
+        String StrCon="jdbc:mysql://localhost:3306/automotora";
+        String user="root";
+        String pass="";
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection(StrCon, user, pass);
+            System.out.println("Conectado con exito");
+        }catch(Exception ex){
+            System.out.println(ex);
+            System.out.println("No se pudo conectar con la base de datos");
+        }
+    }
+    
+}

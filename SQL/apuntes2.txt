@@ -1,0 +1,248 @@
+SACAR EDAD: V_EDAD:=TRUNC(MONTHS_BETWEEN(SYSDATE,FECHA_NACIMIENTO)/12);
+=================================================================================================================
+TIPOS DE DATOS COMPUESTOS:
+Los tipos de datos Compuestos son agrupaciones de datos relacionados que contienen componentes internos (campos) que pueden ser manipulados individualmente. Los tipos de datos compuestos (también conocidos como colecciones) son de TABLE, RECORD, NESTED TABLE y VARRAY
+Pueden soportar múltiples valores diferentes al tipo escalar.
+
+Son de dos tipos:
+RECORD (Registros): usados para tratar datos relacionados, pero diferentes, como una unidad lógica. El registro PL/SQL puede tener variables de diferentes tipos.
+
+Colecciones PL/SQL: combinan variables del mismo tipo, para ser tratadas también como una unidad. Existen dos tipos de colecciones:
+TABLE (Tablas indexadas, anidadas, multinivel).
+VARRAY (Matriz).
+
+Utilizar registros PL/SQL cuando se desee almacenar valores de diferentes tipos que están lógicamente relacionados pero sólo una ocurrencia a la vez.
+Utilizar colecciones PL/SQL cuando se desea almacenar valores del mismo tipo.
+
+
+REGISTROS PL/SQL:
+Son definidos por el usuario y tratan una colección de campos como una unidad lógica. Son convenientes para almacenar una fila de datos desde una tabla para ser procesados. Además se pueden usar para almacenar un subset  de datos de la fila.
+
+sintaxis:
+TYPE nombre_tipo_registro IS RECORD
+     (nombre_campo   tipo_campo [[NOT NULL] {:= | DEFAULT} expr]
+     [, nombre_campo  tipo_campo …]…);
+Ejemplo:
+	DECLARE
+  TYPE tipo_registro_empleado IS RECORD
+    (last_name   VARCHAR2(25),
+     job_id          VARCHAR2(10),
+     salary           NUMBER(8,2));
+  registro_empleado  tipo_registro_empleado;
+---------------------------------------------------------------------------------------------------
+ATRIBUTO %ROWTYPE
+El atributo %ROWTYPE se usa para declarar un registro que almacena una fila completa de un tabla o vista.
+====================================================================================
+TABLAS PL/SQL
+Son tipos de datos compuestos (colecciones) definidas por el usuario. Usan una clave primaria para proveer un acceso a las filas similar a como se leen los valores de un arreglo.
+
+SINTAXIS:
+TYPE nombre_tipo_tabla IS TABLE OF 
+     {tipo_columna | variable%TYPE
+     | tabla.columna%TYPE} [NOT NULL] 
+     | tabla%ROWTYPE  
+     [INDEX BY PLS_INTEGER | BINARY_INTEGER | VARCHAR2(<tamaño>)];
+
+EJEMPLO:
+	DECLARE
+	TYPE tipo_tabla_apellido IS TABLE OF 
+         employees.last_name%TYPE
+         INDEX BY PLS_INTEGER;
+	TYPE tipo_tabla_hiredate IS TABLE OF 
+           DATE
+          INDEX BY PLS_INTEGER;
+	tabla_apellido tipo_tabla_apellido;
+	tabla_fecha_contrato tipo_tabla_hiredate;
+	BEGIN
+ 	tabla_apellido(1) := 'CAMERON';
+ 	tabla_fecha_contrato(8) := SYSDATE + 7;
+   INSERT INTO datos_empleado
+  VALUES(tabla_apellido(1), tabla_fecha_contrato(8));
+  COMMIT;
+	END;  
+
+
+====================================================================================
+VARRAY
+Se define como una Matriz de longitud variable. Similares a los ARRAYS en otros lenguajes. Se pueden almacenar como columnas en la Base de Datos. 
+
+Un VARRAY puede utilizar los mismos métodos de una tabla PL/SQL añadiendo los siguientes:
+LIMIT: retorna el número máximo de elementos que admite el VARRAY.
+EXTEND: Añade un elemento al VARRAY. 
+EXTEND(n): Añade (n) elementos al VARRAY. 
+
+SINTAXIS:
+TYPE nombre_tipo_varray IS VARRAY (limite_superior)
+OF tipo_elemento [NOT NULL]
+ 
+Ejemplo:
+DECLARE
+   TYPE tipo_varray_location IS VARRAY(6) 
+            OF locations.city%TYPE;
+   varray_oficinas  tipo_varray_location;
+   v_elementos    NUMBER(3); 
+BEGIN
+   varray_oficinas:= tipo_varray_location('Bombay','Tokyo','Singapore', 'Oxford');
+   varray_oficinas.EXTEND; -- permite extender en 1 el VARRAY
+   varray_oficinas(5):='Valparaiso';
+   varray_oficinas.EXTEND; -- vuelve a extender en 1 el VARRAY
+   varray_oficinas(6):='Viña del Mar';
+    v_elementos:= varray_oficinas.COUNT(); -- cuenta cuántos elementos tiene el VARRAY
+    DBMS_OUTPUT.PUT_LINE('Elementos almacenados en el VARRAY');
+    FOR i IN 1 .. v_elementos LOOP
+        DBMS_OUTPUT.PUT_LINE(varray_oficinas(i));
+    END LOOP;
+END; 
+======================================================================================
+TIPOS DE DATOS LOB
+Lobs (largo objetos) es el medio para almacenar cantidad de datos grande. Son poderosas estructuras de datos que  permiten almacenar texto, imágenes música y video en la base de datos por sobre los 4GB:  
+
+-CLOB (objeto de caracter largo): Usado para almacenar grandes bloques de datos caracteres en la Base de Datos.
+-BLOB (objeto binario largo): Almacena objetos de estructuras binarias en la Base de Datos. La Base de Datos no interpreta el dato. Las aplicaciones externas que usa este dato debe interpretar el dato.
+-BFILE (archivo binario): Almacena archivos binarios grandes. A diferencia de otros Lobas, BFILES no están almacenados en la Base de Datos, ellos están fuera de la Base de Datos. Sólo un puntero para el BFILE es almacenado en la Base de Datos.
+-NCLOB (objeto de caracter largo asociado a lenguaje nacional): Es usado para almacenar bloques de datos que tienen que ver con lenguaje.
+
+Para trabajar con datos LOB:
+APPEND: agrega el contenido del LOB de origen al LOB de destino.
+CLOSE: cierra un LOB previamente abierto.
+COPY: copia todo o parte del LOB de origen al LOB de destino.
+FILECLOSE. cierra el archivo. 
+FILEEXISTS: comprueba si el archivo existe en el servidor.
+FILEGETNAME obtiene el nombre del objeto del directorio y el nombre del archivo.
+GETLENGTH: devuelve la longitud de un LOB. 
+ISOPEN: comprueba si el LOB ya se abrió utilizando el localizador de entrada.
+LOADFROMFILE: carga datos BFILE en un LOB interno. 
+OPEN: abre un LOB (persistente o temporal) en el modo indicado, lectura/escritura o sólo lectura.
+READ: lee los datos desde el LOB comenzando desde la posición especificada. 
+SUBSTR: devuelve el valor del LOB comenzando desde la posición especificada.
+TRIM: recorta el valor del LOB a la longitud especificada.
+WRITE: escribe datos en el LOB desde una posición indicada.
+WRITEAPPEND: escribe datos al final del LOB.
+------------------------------------------------------------------------------------------------
+CONSIDERACIONES GENERALES:
+Pueden tener 3 estados: Nulo, Vacío y Poblado.
+Para Insertar un CLOB vacío se debe usar la función EMPTY_CLOB() como una expresión en la cláusula VALUES de una sentencia INSERT.
+Las columnas CLOB normalmente se almacenan por separado del resto de la fila en una tabla es decir, en otro Tablespaces.
+Solo el descriptor o el localizador se almacenan físicamente en la columna.
+------------------------------------------------------------------------------------------------
+CURSORES EXPLICITOS SIMPLES
+Un programa PL/SQL declara un cursor, abre un cursor, procesa filas devueltas por una consulta y, a continuación, cierra el cursor. El cursor marca la posición actual en el conjunto activo. 
+1.- La sentencia CURSOR asigna un nombre a un área de SQL de la instancia de la base de datos y define la estructura de la consulta que será asociada al cursor.
+2.- La sentencia OPEN ejecuta la consulta asociada con el cursor, identifica el set activo y posiciona el cursor en la primera fila. 
+2.- La sentencia FETCH recupera la fila actual y avanza el cursor a la siguiente fila hasta que no existan más filas o hasta que se cumpla una condición especificada.
+3.- La sentencia CLOSE libera el cursor
+
+DECLARAR SINTAXIS:
+CURSOR nombre_cursor IS
+                sentencia_select;
+
+ABRIR SINTAXIS:
+OPEN nombre_cursor;
+
+LEER SINTAXIS:
+FETCH nombre_cursor INTO lista_de_variables | registro_PL/SQL;
+
+CERRAR SINTAXIS:
+CLOSE nombre_cursor;
+
+ATRIBUTOS PARA CURSORES EXPLICITOS:
+%ISOPEN: atributo de tipo Boolean que retorna TRUE si el cursor se encuentra abierto.
+%NOTFOUND: atributo de tipo Boolean que retorna TRUE si el FECTH más reciente no retorna filas.
+%FOUND: atributo de tipo Boolean  que Retorna TRUE si el FETCH más reciente retorna una fila.
+%ROWCOUNT: atributo de tipo numérico que retorna el número total de filas procesadas.
+
+=================================================================================================================
+Uso de Atributo %ROWTYPE
+sintaxis:
+CURSOR nombre_cursor IS
+                SELECT columna1, columna2, expression1 alias, columnaN|expresiónN;
+nombre_registro   nombre_cursor%ROWTYPE;
+--------------------------------------------------------------------------------------------------------------------------------
+
+Cursor FOR LOOP Usando subconsulta
+sintaxis:
+DECLARE
+FOR nombre_registro IN (sentencia_select)
+LOOP 
+/* Procesamiento del SET ACTIVO del Cursor y ejecución de sentencias SQL y PL/SQL*/    
+END LOOP;
+--------------------------------------------------------------------------------------------------------------------------------
+CURSOR CON PARAMETRO
+SINTAXIS:
+DECLARE
+       CURSOR nombre_cursor[(p_nombre_parámetro tipo_dato, ...)] IS
+                       sentencia_select;
+BEGIN
+      OPEN  nombre_cursor(valor_parámetro,.....) ;
+      /* Si se usa FOR LOOP debería ser como se muestra a continuación*/
+     FOR nombre_registro IN nombre_cursor(valor_parámetro,.....) LOOP
+--------------------------------------------------------------------------------------------------------------------------------
+MAS DE UN CURSOR
+Se trabaja con más de un cursor a la vez cuando alguno de los valores recuperado del cursor principal es utilizado como parámetro en otro cursor actualizando o generando información detallada y resumida.
+SINTAXIS:
+DECLARE
+      CURSOR nombre_cursor1 IS
+                       sentencia_select1;
+       CURSOR nombre_cursor2[(p_nombre_parámetro tipo_dato, ...)] IS
+                       sentencia_select2;
+BEGIN
+     OPEN nombre_cursor1;       
+      FECTH nombre_cursor1 INTO                      LOOP
+                 OPEN  nombre_cursor2(valor_parámetro,.....) ;
+                             FECTH nombre_cursor1 INTO                      LOOP
+      /* Si se usa FOR LOOP debería ser como se muestra a continuación*/
+     FOR nombre_registro1 IN nombre_cursor1 LOOP
+             FOR nombre_registro2 IN nombre_cursor2(valor_parámetro,.....) LOOP
+--------------------------------------------------------------------------------------------------------------------------------
+VARIABLE DE CURSOR
+TYPE nombre_tipo_cursor IS REF CURSOR [ RETURN tipo_retorno ] ;
+variable_cursor nombre_tipo_cursor;
+variable_cursor SYS_REFCURSOR;
+--------------------------------------------------------------------------------------------------------------------------------
+MANEJO DE EXCEPCIONES
+sintaxis:
+EXCEPTION
+  WHEN excepción1 [OR excepción2 . . .] THEN
+    sentencia1;
+    sentencia2;
+  [WHEN excepciónM [OR excepciónN . . .] THEN
+    sentencia1;
+    sentencia2;
+  [WHEN OTHERS THEN
+    sentencia1;
+    sentencia2;
+    . . .]
+--------------------------------------------------------------------------------------------------------------------------------
+USO DE FUNCIONES SQLCODE Y SQLERRM
+Las funciones que permiten aclarar al usuario la situación de error son:
+SQLCODE: retorna el número de error Oracle para excepciones internas.
+SQLERRM: retorna el mensaje de error asociado con el número de error.
+--------------------------------------------------------------------------------------------------------------------------------
+MANEJO DE EXCEPCIONES NO PREDEFINIDAS DE ORACLE
+sintaxis:
+DECLARE
+ nombre_excepción EXCEPTION;	
+ PRAGMA EXCEPTION_INIT (nombre_excepción, número_error); 	            
+BEGIN
+………………………………………………..………………………………....
+…………………………………………………………………..……………....
+EXCEPTION
+ WHEN nombre_excepción THEN   	
+……………………………………………………..…………………………....		
+END;
+--------------------------------------------------------------------------------------------------------------------------------
+MANEJO DE ERRORES DEFINIDAS POR EL USUARIO
+SET SERVEROUTPUT ON
+DECLARE
+ nombre_excepción  EXCEPTION; 
+…………………………………….……….…………….
+BEGIN
+…………………………………….……….…………….
+   IF condición THEN 
+       RAISE nombre_excepción ; 
+…………………………………….……….…………….
+EXCEPTION
+ WHEN nombre_excepción THEN 
+…………………………………….……….…………….
+
+

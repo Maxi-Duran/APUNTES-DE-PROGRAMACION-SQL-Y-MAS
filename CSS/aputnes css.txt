@@ -1,0 +1,321 @@
+zSELECTORES:
+ID: #
+CLASS: .
+UNIVERSAL: *
+
+img[src=""]=las imagenes que contenga dentro de las comillas
+img[src$="png"]=las imagenes que terminen con lo que le indiquemos
+img[src^="maxi"]=las imagenes que empiezen con lo que le indiquemos
+ul > strong{}= modificamos los strong que esten dentro de ul,si esta fuera no lo modifica
+h1+p=selector adyacente= los parrafos que le sigan a h1
+h1~p: todos los p que vengan de h1
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UNIDADES:
+PX: pixeles
+Mas para cosas fisicas como imprimir
+cm: centimetros
+mm: milimetros
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+MODELO DE CAJA:
+
+CONTENT: ES EL CONTENIDO DE NUESTRA PAGINA
+
+PADDING: ES EL ESPACIO ADICION ENTRE EL CONTENIDO Y EL BORDE
+
+BORDER: LINEA QUE ENCIERRA COMPLETAMENTE EL CONTENIDO
+
+MARGIN: PERMITE DEFINIR UN ESPACIO EN BLANCO ALREDEDOR DEL BORDE Y QUE SEPARA A LA CAJA CON LAS CAJAS ADYACENTES
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+COLORES:
+Los colores en CSS se definen utilizando una de las siguientes formas:
+• Nombre del color
+• RGB (red, green, blue)
+• HEX o valores Hexadecimales
+• HSL (Hue, Saturation, Light)
+• RGBA(Red, Green, Blue, Alpha)
+• HSLA (Hue, Saturation, Light, Alpha)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TEXTO
+
+Color
+font-family: Tipografia.
+font-size: tamaño del texto. 16px por defecto 
+font-weight: Lo grueso del texto
+font-style:
+• Alineación: TEXT-ALIGN(justify)
+• Decoración: text-decoration
+• Transformación text-transform
+• Espaciado de caracteres letter-spacing
+• Altura de la línea line-height
+• Dirección del texto 
+• Espaciado entre palabras
+• Sombra del texto. text-shadow
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FLOAT:
+Colocamos una caja a float en la direccion que le indiquemos
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ALINEAR:
+MARGIN: AUTO;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BORDES:
+border-width
+border-radius
+border-style
+border-color
+border: 3px solid black
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BOX SIZING:
+
+border-box=Dice que el tamaño de caja se va a mantener estable
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+BACKGROUND (FONDOS):
+BACKGROUND: imagen,posicion,size,atachment,color
+background-color:
+background-image:
+background-size contain,cover: intenta adaptarse al contain/adapta 100%
+background-position:
+background-attachment
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+FONDOS-GRADIENTES:
+background: linear-gradient(to right,transparent,primer color,segundo color)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SOMBRAS:
+box-shadow:derecha,abajo,desenfoque,expansion,color
+text-shadow
+filter:drop-shadow()
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+HERENCIA:
+Inherit:Hereda
+initial:el valor por defecto de la pag
+unset: resetea el color
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CASCADA Y ESPECIFIDAD:
+menos a mas importante:
+-navegador
+-User de navegador
+-{ }
+-<style>
+-atributo stryle
+-!Important : En la cascada
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PSEUDOCLASES:
+hover:cuando pasamos el mouse
+active: cuando clickeamos
+empty: seleccio si esta vacio
+checked: si esta checkeda
+a:link: links no visitados
+a:visited: links visitados
+focus:
+invalid: inputs invalidos
+valid: inputs validos
+first-child: selecciona el primero
+last-child: seleccion el ultimo
+nth-child(num n): seleccion el que indiquemos
+nth-of-type: seleccion por el tipo
+
+PSEUDOCLASES: IS ,WHERE ,HAS
+
+ :is(): agrupa los elementos
+ :where(): lo mismo pero cambia la especifidad
+:has():si tiene el elemento, aplica el css
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+PSEUDOELEMENTOS:
+se representa con dos puntos ::
+::first-letter:accedemos a la primera letra
+::first-line: accedemos a la primera linea
+::selection: al pasar el mouse cliockeado 
+::placeholder:
+::marker:
+::before:
+::after:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+METODOLOGIA BEM:
+BlOQUE Y ELEMENTOS
+el nombre del bloque es lo que representa.
+el nombre de un elemento: nombre-bloque__item
+si modificamos un elemento:nombre-bloque__item item--cambio
+si modificamos un bloque: nombre-bloque nombre-bloque nombre-bloque--cambio
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DISPLAY:
+block: convierte en un bloque(por defecto)
+inline: funciona de forma en horizontal
+inline-block: trabajamos elementos en bloque pero unidos
+none: no ocupa espacio en  la pagina
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+POSITION:
+Separar los bloques por capas.
+
+Static: por defecto
+
+Relative: Podemos movernos libremente por el body pero seguimos ocupando la posicion inicial
+Para mover:
+left,right,top,bottom y z-index
+z-index:poder mover las cajas hacia atras o delante
+
+Absolute: No tiene espacio en la pagina, esta por encima de todo
+
+FIXED:  No tiene espacio en la pagina, esta por encima de todo por completo
+
+STICKY: funciona como el relative pero si le damos una propiedad se queda fija o pegado en esa propiedad.
+
+---------------------------------------------------------------------------------------------------
+OVERFLOW (DESBORDAMIENTO):
+overflow: visible.
+overflow: hidden. 
+overflow: scroll. 
+overflow-y or x:afectamos en eje y o x
+overflow: auto: La mejor opcion
+---------------------------------------------------------------------------------------------------
+CONTROL FLUJO DE TEXTO
+white-space: define como se comporta los espacios en blanco
+ -nowrap: no saltos de linea
+ -pre: detecta los saltos de linea en html
+ -pre-wrap: respeta para que no se desborde
+ ---------------------------------------------------------------------------------------------------
+OBJECT FIT y OBJECT POSITIOn:
+object fit: fill: por defecto
+object fit: contain: 
+object fit: cover: se adapta
+
+object fit:scale-down: nos quedamos con resolucion mas chica
+object position: top,left,right,bottom: lo ajustamo como lo movemos
+-------------------------------------------------------------------------------------------------
+OUTLINE:
+entre el borde y margin. no ocupa espacio, es solamente visual
+OUTLINE-WIDTH
+OUTLINE-COLOR
+OUTLINE-STYLE
+outline-offset: distancia del margin
+
+---------------------------------------------------------------------------------------------------
+FLEXBOX:
+eje main axis(horizontal) y cross axis(vertical), estos dos pueden ir variando:
+row:izquierda a derecha
+row-reverse:derecha a izquierda
+column:arriba hacia abajo
+column-reverse:abajo hacia arriba
+
+display :flex
+flex-direction:row,column
+direction:  direccion del flex
+---------------------------------------------------------------------------------------------------
+FLEX-WRAP Y FLEX-FLOW:
+flex-wrap: los items pueden fluir a otra linea
+flex-flow: row y wrap: es un resumido de direction y wrap
+---------------------------------------------------------------------------------------------------
+ALINEACION EN LOS EJES
+JUSTIFY-CONTENT: alinea los items en el eje principal
+
+justify-content:start : al principio del eje(por defecto)
+justify-content:end : al final del eje
+justify-content:center : centra los items del eje
+justify-content:space-between : un item al principio, otro al final y los demas los distribuye al medio
+justify-content:space-around: items separados y trata de tener margenes iguales
+justify-content:space-evenly: todos los items a la misma distancia
+
+ALIGN-ITEMS:  alinea los items en el eje cruzado
+alig-items:strecth:estira el contenido para que se ajuste(por defecto)
+align-items: start: posicionan al principio y solamente ocupan el contenido 
+align-items:end: posicionan al final
+align-items:center: para que se centren
+align-items:baseline:se intenta hacer una alineacion del texto  
+
+ALIGN-CONTENTS: agrupar ejes, mismos valores
+
+GAP: SEPARACION QUE TIENEN LOS ITEMS (COMO MARGIN)
+---------------------------------------------------------------------------------------------------
+FLEX BASIC,SHRINK Y GROW(PARA LOS FLEX-ITEMS)
+
+flex-grow:nos permite insertarle a un elemento la habilidad de crecer en el espacio si es necesario
+flex-shrink:se controla cómo se encogerán los elementos
+flex-basis se define el tamaño de un ítem en términos del espacio que deja como espacio disponible:
+abreviacion:
+flex: grow,shrink,basis
+---------------------------------------------------------------------------------------------------
+ALIGN SELF:	POSICIONAR UN ITEM individualmente
+---------------------------------------------------------------------------------------------------
+RESPONSIVE DESIGN:
+
+Bloques y multimedia FLEXIBLE:
+min-width: el minimo de anchura que tendra
+max-widht: el maximo de anchura que tendra
+min-height: el minimo de altura que tendra
+max-height: el maximo de altura que tendra
+---------------------------------------------------------------------------------------------------
+MEDIA QUERIES:
+@media print: para imprimir pagina
+@media screen: para  pantallas
+@media screen and(max-width): el mas usado
+---------------------------------------------------------------------------------------------------
+FEATURE QUERIES:
+@SUPPORT (CONDICION)
+@SUPPORT NOT(CONDICION)
+---------------------------------------------------------------------------------------------------
+CONTAINER QUERIES:
+
+---------------------------------------------------------------------------------------------------
+GRID
+---------------------------------------------------------------------------------------------------
+TRANSICIONES:
+transition: propiedad,duracion,timing,delay  (steps 10) : en pasos
+TRANSITION-PROPERTY: la propiedad que queremos transionar.
+TRANSITION-DURATION: duracion de la transicion
+TRANSITION-DELAR:cuanto tardara en hacer la transicion
+TRANSITION-TIMING-FUNCTION: velocidad de transicion.  (CUBIC-BEZIER)
+---------------------------------------------------------------------------------------------------
+ANIMACIONES:
+sintaxis:
+@keyfrom nombre{
+      from{
+		opacity: 0;
+ 	}
+	to{
+		opacity:1;
+	}
+}
+animation-name: nombre;
+animation-duration: 3s;
+animation-delay: 3s;
+animation-fill-mode:  Especifica qué valores tendrán las propiedades después de finalizar la animación.
+animation-timing-function: 
+animation-iteracion-count: cantidad de veces que se repita.
+animation-direction :direccion
+
+---------------------------------------------------------------------------------------------------
+ANIMACION EN SCROLL
+ANIMATION-TIMELINE:SCROLL();
+---------------------------------------------------------------------------------------------------
+RANGO DE ANIMACIONES: web view timeline ranges visualizer
+animation-range-start: cover 0%
+animation-range-end: cover 100%
+---------------------------------------------------------------------------------------------------
+BACKDROP-FILTER: por detras de filter.
+FILTER:
+blur: desenfoque
+brightnees:brillo
+contrast: contraste
+grayscale: imagen a gris
+saturate: saturacion
+hue-rotate: rotar en el circulo de color
+---------------------------------------------------------------------------------------------------
+TRANSFORM
+deg:grados
+SCALE(Y)(X): modificar las dimensiones,Y lo alto y x ancho
+skew(): gira la imagen
+rotate:rota la imgen 
+translate(Y)(X): se desplaza la imagen
+---------------------------------------------------------------------------------------------------
+CLAMP(min,ideal,max):minimo de pantalla, lo ideal y el maximo
+CALC()
+---------------------------------------------------------------------------------------------------
+VARIABLES:
+--color principal: #f44
+---------------------------------------------------------------------------------------------------
+Propiedades del scroll:
+scroll-behavior: smooth;
+scrollbar-color:
+scrollbar-width:thin;

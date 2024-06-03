@@ -1,0 +1,51 @@
+SUBPROGRAMA PL/SQL
+Un subprograma PL/SQL es un bloque PL/SQL con nombre que se puede ejecutar con un conjunto de parámetros. Se puede declarar y definir un subprograma dentro de cualquier bloque PL/SQL o de otro subprograma.
+Procedimientos Almacenados y Funciones Almacenadas. Normalmente, se utiliza un Procedimiento para realizar el procesamiento de información y una Función para realizar una acción devolver un valor. 
+SINTAXIS SUBPROGRAMA: 
+
+CREATE [OR REPLACE] tipo_subprograma nombre_subprograma
+ [(parámetro1 [modo] tipo_dato1,
+   parámetro2 [modo] tipo_dato2, ...)]
+
+IS|AS
+  [declaración_variables_locales; …]
+BEGIN
+  -- Sentencias ejecutables SQL y PL/SQL                Bloque PL/SQL estándar
+[EXCEPTION]
+  -- Sentencias control de excepciones
+END [nombre_procedimiento];
+=====================================================================================
+CREAR UN PROCEDIMIENTO ALMACENADO
+sintaxis:
+CREATE [OR REPLACE] PROCEDURE nombre_procedimiento
+ [(parámetro1 [modo] tipo_dato1, parámetro2 [modo] tipo_dato2, ...)]
+
+IS|AS
+  [declaración_variables_locales; …]
+BEGIN
+  -- Sentencias ejecutables SQL y PL/SQL                Bloque PL/SQL estándar
+[EXCEPTION]
+  -- Sentencias control de excepciones
+END [nombre_procedimiento];
+-----------------------------------------------------------
+USO DE PARAMETROS:
+IN: POR DEFECTO
+OUT:DARLE UN VALOR A TRAVES DE UNA VARIABLE
+IN-OUT:DEBE SER UNA VARIABLE INICIALIZADA
+
+=====================================================================================
+FUNCION ALMACENADA
+Una Función Almacenada es un tipo de subprograma PL/SQL (bloque PL/SQL con nombre) que retorna un valor.
+sintaxis:
+CREATE [OR REPLACE] FUNCTION nombre_función
+ [(parámetro1 [modo1] tipo_dato1, ...)]
+RETURN tipo_dato IS|AS
+
+ [declaración_variables_locales; …]
+BEGIN
+  -- Sentencias ejecutables SQL y PL/SQL
+ RETURN expresión
+[EXCEPTION]                                                                r
+ -- Sentencias control de excepciones
+  [RETURN expresión] 
+END [nombre_función];
