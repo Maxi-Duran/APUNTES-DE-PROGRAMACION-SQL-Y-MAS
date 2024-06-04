@@ -74,3 +74,22 @@ admin.site.register(Genero)
 admin.site.register(Alumno)
 ==================================================================================
 CONSULTAR DATOS EN DJANGO
+==================================================================================
+CREAR INDEX
+SIEMPRE DENTRO DE UNA CARPLETA TEMPLATES Y LUEGO SUBCARPTETA CON EL NOMBRE DE LA APP
+==================================================================================
+Importar css,img ,videos. js
+cargar un tag primero= {% load static %}
+luego en las direcciones (href,src):
+{% static 'ruta' %}
+
+==================================================================================
+HERENCIA DE TEMPLATES
+{% block contenido %}
+
+{% endblock %}
+
+{% extends 'app/index.html' %}
+==================================================================================
+NAVEGAR
+{% url ''%}
