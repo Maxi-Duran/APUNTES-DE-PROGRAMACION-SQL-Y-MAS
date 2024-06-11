@@ -1,9 +1,12 @@
 COMANDOS:
 CREAR MIGRACIONES:
+para que migren las tablas en models.
+
 python manage.py makemigrations
 python manage.py migrate
 -------------------------------------------------------------------------------------------------
 CREAR SUPERUSUARIO:
+para acceder al admin de django
 paso1: python manage.py createsuperuser
 Paso 2:   Username: admin
 Paso 3:   Email address: admin@example.com
@@ -74,6 +77,9 @@ admin.site.register(Genero)
 admin.site.register(Alumno)
 ==================================================================================
 CONSULTAR DATOS EN DJANGO
+Manager.raw()
+nombre= Nombre.objects.raw('select * from nombre_nombre')
+print(nombre)
 ==================================================================================
 CREAR INDEX
 SIEMPRE DENTRO DE UNA CARPLETA TEMPLATES Y LUEGO SUBCARPTETA CON EL NOMBRE DE LA APP
@@ -93,3 +99,4 @@ HERENCIA DE TEMPLATES
 ==================================================================================
 NAVEGAR
 {% url ''%}
+
